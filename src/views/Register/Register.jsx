@@ -46,7 +46,7 @@ const Register = () => {
                     <h2 className='title'>Welcome to MoneyControl</h2>
                     <div>
                         <p className='inline'>Already have an Account?</p>
-                        <Link to={'/login'}>Sign In</Link>
+                        <Link to={'/login'}> Sign In</Link>
                     </div>
 
                     <div>
