@@ -14,7 +14,7 @@ const schema = yup.object({
 
 const Register = () => {
     const [ backErrors, setBackErrors ] = useState({})
-    const [ isSubmitting, setIsSubmitting ] = useState(false)
+/*     const [ isSubmitting, setIsSubmitting ] = useState(false) */
     const navigate = useNavigate()
     const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
@@ -22,7 +22,7 @@ const Register = () => {
 
     const onSubmit = (data) => {
         setBackErrors({})
-        setIsSubmitting(true)
+        /* setIsSubmitting(true) */
 
         createUser(data)
             .then((userCreated) => {
@@ -31,9 +31,9 @@ const Register = () => {
             .catch(err => {
                 setBackErrors(err?.response?.data)
             })
-            .finally(() => {
+/*             .finally(() => {
                 setIsSubmitting(false)
-            })
+            }) */
     }
 
     return (
@@ -63,7 +63,7 @@ const Register = () => {
                             <div className='formField'>
                                 <label>Email</label>
                                 <input
-                                 className={`backErrors || errors.name?.message ? 'invalid' : 'valid'`}
+                                className={errors.email?.message ? 'invalid' : ''}
                                 {...register('email')} 
                                 type="email" 
                                 />
@@ -72,7 +72,7 @@ const Register = () => {
                             <div className='formField'>
                                 <label>Password</label>
                                 <input
-                                className={`backErrors?.password || errors.name?.message ? 'invalid' : 'valid'`}
+                                 className={errors.password?.message ? 'invalid' : ''}
                                 {...register('password')} 
                                 type="password" 
                                 />
