@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 10rem 2rem 10rem;
+    background-color: rgb(241, 241, 241);
+    
+    a:link, a:visited, a:active {
+        text-decoration:none;
+        color: black;
+        margin-left: 0.5rem;
+    }
+
+    .flexy {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+            a {
+                margin-left: 3rem;
+            }
+    }
+}
