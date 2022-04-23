@@ -7,8 +7,8 @@ import { login as loginRequest } from '../../services/AuthService';
 import './Login.scss'
 
 const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).required()
+  email: yup.string().email().required('Email is required'),
+  password: yup.string().required('Password is required')
 }).required();
 
 const Login = () => {
@@ -21,14 +21,16 @@ const Login = () => {
     resolver: yupResolver(schema)
     });
 
+/*  HACER EL BOTON DISABLED 
+    const passwordInput = watch('password');
+    const containsNumber = passwordInput?.length >= 8; */
 
     const onSubmit = (data) => {
-    setError({})
+    setError(undefined)
 
     loginRequest(data)
       .then(response => {
         console.log(response);
-
         /* login(response.access_token, () => navigate(from, { replace: true }))  */
       })
       .catch(err => {
@@ -36,9 +38,8 @@ const Login = () => {
       })
   }
 
-
     return (
-        <div className='container Register'>
+        <div className='container Login'>
             <div className='row'>
                 <div className='col-lg-6'>
                 <img src="https://public-files.gumroad.com/variants/sxn5t8ady8tbj4yeymyh5vi6d9f2/4d4cb575366005157970186bb171da8f6b6b8bb857dcdd1f8e93774cc5f0900d" alt="" />
@@ -68,10 +69,10 @@ const Login = () => {
                                 {...register('password')} 
                                 type="password" 
                                 />
-                               {/*  {error && <small style={{color: "red"}}>{error}</small>} */}
+                                {errors.password?.message && <small style={{color: "red"}}>{errors.password?.message}</small>}
+                                {error && <small style={{color: "red"}}>{error}</small>}
                             </div>
-
-                            <button>Enter</button>
+                            <button >Enter</button>
                         </form>
                     </div>
                 </div>

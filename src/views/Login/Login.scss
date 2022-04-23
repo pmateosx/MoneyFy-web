@@ -1,0 +1,40 @@
+.Login {
+    margin-top: 10rem;
+
+    .inline {
+        display: inline !important;
+    }
+    
+    .title {
+        margin-bottom: 0;
+    }
+
+    img {
+        width: 95%;
+    }
+    
+    .form-container {
+        margin-top: 4rem;
+        border-radius: 10px;
+    
+            .formField {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                margin-bottom: 0.75rem;
+
+                .invalid {
+                    border: 1px solid #ff0000;
+                    border-radius: 2px;
+                }
+
+                .valid {
+                    border-color: green;
+                }
+            }
+
+            button {
+                margin-top: 1.5rem;
+            }
+    }
+}
