@@ -7,9 +7,9 @@ import { createUser } from '../../services/AuthService'
 import './Register.scss'
 
 const schema = yup.object({
-    email: yup.string().email().required(),
-    name: yup.string().required(),
-    password: yup.string().min(8, 'Password must contain at least 8 characters').required()
+    email: yup.string().email().required('Email is required.'),
+    name: yup.string().required('Name is required.'),
+    password: yup.string().min(8, 'Password must contain at least 8 characters.').required('Password is required.')
 }).required()
 
 const Register = () => {
@@ -29,6 +29,7 @@ const Register = () => {
                 navigate('/login')
             })
             .catch(err => {
+                console.log(err?.response?.data);
                 setBackErrors(err?.response?.data)
             })
 /*             .finally(() => {

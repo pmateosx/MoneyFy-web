@@ -4,7 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { login as loginRequest } from '../../services/AuthService';
+import { useAuthContext } from '../../contexts/AuthContext';
 import './Login.scss'
+
 
 const schema = yup.object({
   email: yup.string().email().required('Email is required'),
@@ -14,8 +16,9 @@ const schema = yup.object({
 const Login = () => {
     const navigate = useNavigate()
     let location = useLocation();
+    const { login } = useAuthContext()
 
-    let from = location.state?.from?.pathname || "/home";
+    let from = location.state?.from?.pathname || "/";
     const [error, setError] = useState()
     const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
@@ -31,7 +34,7 @@ const Login = () => {
     loginRequest(data)
       .then(response => {
         console.log(response);
-        /* login(response.access_token, () => navigate(from, { replace: true }))  */
+        login(response.access_token, () => navigate(from, { replace: true })) 
       })
       .catch(err => {
         setError(err?.response?.data?.message)
