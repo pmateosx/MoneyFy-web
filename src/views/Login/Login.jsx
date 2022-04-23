@@ -7,7 +7,6 @@ import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import './Login.scss'
 
-
 const schema = yup.object({
   email: yup.string().email().required('Email is required'),
   password: yup.string().required('Password is required')
