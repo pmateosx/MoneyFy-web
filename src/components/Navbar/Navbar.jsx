@@ -7,12 +7,12 @@ const Navbar = () => {
     const { user } = useAuthContext();
     return (
         <div className='navbar'>
-            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/'>Logo</NavLink>
             <div className='flexy'>
                 {user ? 
                 (
                     <NavLink to='/profile' className='flexy navUser'>
-                        <div>
+                        <div className='frame-img'>
                         <img src={user.avatar} alt="user avatar" />
                         </div>
                         <p>{user.name}</p> 

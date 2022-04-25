@@ -35,16 +35,22 @@
         color: #f0f0f0;
         background-color: rgb(74, 74, 74);
         border: 1px solid rgb(74, 74, 74);
-
     }
 
     .navUser {
 
-        img {
+        .frame-img {
+            border-radius: 50%;
             width: 30px;
             height: 30px;
             margin-right: 1rem;
-        
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
+
     }
 }
