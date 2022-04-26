@@ -15,7 +15,7 @@ const Navbar = () => {
                         <div className='frame-img'>
                         <img src={user.avatar} alt="user avatar" />
                         </div>
-                        <p>{user.name}</p> 
+                        <p>Hi, {user.name}</p> 
                     </NavLink>
                 )
                 :

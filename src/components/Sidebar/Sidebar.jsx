@@ -5,6 +5,9 @@ import { FiSidebar } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 import { FiTrendingUp } from "react-icons/fi";
 import { FiThumbsUp } from "react-icons/fi";
+import { FiBarChart } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import './Sidebar.scss';
 
 const sidebarNavItems = [
@@ -32,6 +35,20 @@ const sidebarNavItems = [
         to: '/goals',
         section: 'goals'
     },
+    {
+        display: 'Commons',
+        title: 'SHARED',
+        icon: <FiUsers />,
+        to: '/commons',
+        section: 'commons'
+    },
+    {
+        display: 'Profile',
+        title: 'MY ACOUNT',
+        icon: <FiUser />,
+        to: '/profile',
+        section: 'profile'
+    },
 ]
 
 const Sidebar = () => {
@@ -58,19 +75,46 @@ const Sidebar = () => {
 
     return <div className='sidebar'>
         <div className="sidebar__logo">
-            Monefy
+            <div className= 'sidebar__fullLogo'>
+            <FiBarChart style={{ marginRight: '1rem'}}/>
+            <Link to={'/'}>MoneyFy</Link>
+            </div>
         </div>
+
+        <h3 className='sidebar__title'>MAIN</h3>
+        
         <div ref={sidebarRef} className="sidebar__menu">
-            <div
+            {activeIndex <= 4 ? 
+(            <div
                 ref={indicatorRef}
                 className="sidebar__menu__indicator"
-                style={{
-                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
-                }}
-            ></div>
+                    style={{
+                        transform: 
+                        `translateX(-50%)
+                        translateY(${activeIndex * stepHeight}px)`
+                    }}
+            >
+            </div>)
+            :
+            (            <div
+                ref={indicatorRef}
+                className="sidebar__menu__indicator"
+                    style={{
+                        transform: 
+                        `translateX(-50%)
+                        translateY(${activeIndex * stepHeight}px)`
+                    }}
+            >
+            </div>)
+            
+            
+            }
+
             {
-                sidebarNavItems.map((item, index) => (
+                sidebarNavItems.map((item, index) => { 
+                    return (
                     <Link to={item.to} key={index}>
+                        {item.title ? (<h3 className='sidebar__title'>{item.title}</h3>) : ''}
                         <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
                             <div className="sidebar__menu__item__icon">
                                 {item.icon}
@@ -80,7 +124,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                     </Link>
-                ))
+                )})
             }
 
         </div>

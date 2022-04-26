@@ -17,13 +17,14 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/profile' element={<Profile/>}/>
 
         <Route path='/' element={<AppLayout />}>
           <Route index element={<Dashboard />} />
           <Route path='/incomes' element={<Blank />} />
           <Route path='/expenses' element={<Blank />} />
           <Route path='/goals' element={<Blank />} />
+          <Route path='/commons' element={<Blank />} />
+          <Route path='/profile' element={<Profile/>}/>
         </Route>
       </Routes>
     </div>
