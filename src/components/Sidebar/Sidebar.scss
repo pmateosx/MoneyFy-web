@@ -1,0 +1,50 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background-color: #fff;
+
+    &__logo {
+        height: 120px;
+    }
+
+    &__menu {
+        position: relative;
+        
+        &__item {
+            display: flex;
+            align-items: center;
+            place-content: flex-start;
+            padding: 1rem 3rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #555555;
+            transition: color 0.2s ease-in-out;
+
+            &.active {
+                color: #fff;
+            }
+
+            &__icon {
+                margin-right: 1rem;
+            }
+        }
+
+        &__indicator {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: calc(100% - 30px);
+            border-radius: 10px;
+            background-color: #308efe;
+            z-index: -1;
+            transform: translateX(-50%);
+            transition: 0.2s ease-in-out;
+        }
+    }
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
