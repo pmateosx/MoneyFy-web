@@ -10,8 +10,8 @@ import './Navbar.scss'
 
 const Navbar = () => {
     const { user } = useAuthContext();
-
     const [showModal, setShowModal] = useState(false)
+    const [openDropdown, setOpenDropdown] = useState(false)
 
     const handleOpenModal = () => {
         setShowModal(true)
@@ -25,6 +25,7 @@ const Navbar = () => {
             <div className='navbar'>
                 <NavLink to='/home'>Logo</NavLink>
                 <div className='flexy'>
+                    {user && <button className='add-btn' onClick={() => setOpenDropdown(!openDropdown)}> openDropdown</button>}
                     {user && <button className='add-btn' onClick={handleOpenModal}> <FiPlus/></button>}
                     {user ? 
                     (
@@ -45,6 +46,7 @@ const Navbar = () => {
                 </div>
             </div>
             {showModal && <Modal onClose={handleCloseModal} title='Hola que tal'> Hola </Modal>}
+            {/* {openDropdown && } */}
         </>
 
     )

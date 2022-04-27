@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { FiSidebar } from "react-icons/fi";
-import { FiShoppingBag } from "react-icons/fi";
+import { 
+    FiSidebar, 
+    FiShoppingBag 
+} from "react-icons/fi";
 import { FiTrendingUp } from "react-icons/fi";
 import { FiThumbsUp } from "react-icons/fi";
 import { FiBarChart } from "react-icons/fi";
@@ -15,39 +17,45 @@ const sidebarNavItems = [
         display: 'Dashboard',
         icon: <FiSidebar />,
         to: '/',
-        section: ''
+        section: '',
+        sectionNumber: 0
     },
     {
         display: 'Income',
         icon: <FiTrendingUp />,
         to: '/incomes',
-        section: 'incomes'
+        section: 'incomes',
+        sectionNumber: 0
     },
     {
         display: 'Expense',
         icon: <FiShoppingBag />,
         to: '/expenses',
-        section: 'expenses'
+        section: 'expenses',
+        sectionNumber: 0
     },
     {
         display: 'Goals',
         icon: <FiThumbsUp />,
         to: '/goals',
-        section: 'goals'
+        section: 'goals',
+        sectionNumber: 0
     },
     {
         display: 'Commons',
         title: 'SHARED',
         icon: <FiUsers />,
         to: '/commons',
-        section: 'commons'
+        section: 'commons',
+        sectionNumber: 1
     },
     {
         display: 'Profile',
         title: 'MY ACOUNT',
         icon: <FiUser />,
         to: '/profile',
-        section: 'profile'
+        section: 'profile',
+        sectionNumber: 2
     },
 ]
 
@@ -57,6 +65,9 @@ const Sidebar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
+
+    const offsiteIndicator = 45;
+    const sidebarIndicatorHeight = activeIndex * stepHeight + (sidebarNavItems[activeIndex].sectionNumber * offsiteIndicator);
 
     useEffect(() => {
         setTimeout(() => {
@@ -84,31 +95,16 @@ const Sidebar = () => {
         <h3 className='sidebar__title'>MAIN</h3>
         
         <div ref={sidebarRef} className="sidebar__menu">
-            {activeIndex <= 4 ? 
-(            <div
+            <div
                 ref={indicatorRef}
                 className="sidebar__menu__indicator"
-                    style={{
-                        transform: 
-                        `translateX(-50%)
-                        translateY(${activeIndex * stepHeight}px)`
-                    }}
-            >
-            </div>)
-            :
-            (            <div
-                ref={indicatorRef}
-                className="sidebar__menu__indicator"
-                    style={{
-                        transform: 
-                        `translateX(-50%)
-                        translateY(${activeIndex * stepHeight}px)`
-                    }}
-            >
-            </div>)
-            
-            
-            }
+                style={{
+                    transform: 
+                    `translateX(-50%)
+                    translateY(${sidebarIndicatorHeight}px)`
+                }}
+            />
+        
 
             {
                 sidebarNavItems.map((item, index) => { 
