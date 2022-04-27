@@ -1,0 +1,36 @@
+.Modal {
+    background-color: rgba(0, 0, 0, 0.15);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000000;
+
+    .modal-content {
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+        max-width: 40vh;
+        min-height: 20vh;
+        min-width: 50vw;
+        margin: 15vh auto;
+        position: relative;
+        box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05);
+        padding: 0.75rem 2rem 2rem 2rem;
+
+        button {
+            position: absolute;
+            font-size: 1.5rem;
+            right: 0;
+            border: none;
+            background: none;
+            margin: 1rem 1rem 1rem 1rem;
+            border-radius: 100%;
+            color:  #555555;
+
+            :hover {
+                background-color: rgb(241, 241, 241);
+            }
+        }
+    }
+}
