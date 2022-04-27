@@ -21,9 +21,26 @@
             }
     }
 
+    .add-btn {
+        border: none;
+        margin-left: 1rem;
+        background: none;
+        font-size: 2rem;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3rem;
+    }
+
+    .add-btn:hover{
+        background-color: rgb(241, 241, 241);
+    }
+
     .button-out {
         border: 1px solid rgb(175, 175, 175);
-        padding: 1rem 2rem 1rem 2rem;
+        padding: 0.75rem 1.5rem 0.75rem 1.5rem;
         border-radius: 5px;
         margin-left: 1rem;
         background: none;
@@ -31,7 +48,7 @@
         color: rgb(39, 39, 39);
     }
 
-    button:hover {
+    .button-out:hover {
         color: #f0f0f0;
         background-color: rgb(74, 74, 74);
         border: 1px solid rgb(74, 74, 74);

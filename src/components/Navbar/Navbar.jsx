@@ -1,7 +1,10 @@
-import './Navbar.scss'
 import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/AuthContext';
 import { logout } from '../../store/AccessTokenStore.js'
+
+import { FiPlus } from "react-icons/fi";
+
+import './Navbar.scss'
 
 const Navbar = () => {
     const { user } = useAuthContext();
@@ -9,6 +12,7 @@ const Navbar = () => {
         <div className='navbar'>
             <NavLink to='/home'>Logo</NavLink>
             <div className='flexy'>
+                {user && <button className='add-btn' onClick={()=>''}> <FiPlus/></button>}
                 {user ? 
                 (
                     <NavLink to='/profile' className='flexy navUser'>
