@@ -7,10 +7,12 @@ import {
     FiThumbsUp,
     FiBarChart,
     FiUser,
-    FiUsers
+    FiUsers,
+    FiLogOut
 } from "react-icons/fi";
 
 import './Sidebar.scss';
+import { logout } from '../../store/AccessTokenStore';
 
 const sidebarNavItems = [
     {
@@ -123,6 +125,9 @@ const Sidebar = () => {
                 )})
             }
 
+        </div>
+        <div className='logout'>
+            <button className='button-out' onClick={()=>logout()}> <FiLogOut className='icon-out'/>Logout</button>
         </div>
     </div>;
 };
