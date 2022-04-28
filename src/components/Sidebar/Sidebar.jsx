@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import { 
     FiSidebar, 
-    FiShoppingBag 
+    FiShoppingBag,
+    FiTrendingUp,
+    FiThumbsUp,
+    FiBarChart,
+    FiUser,
+    FiUsers
 } from "react-icons/fi";
-import { FiTrendingUp } from "react-icons/fi";
-import { FiThumbsUp } from "react-icons/fi";
-import { FiBarChart } from "react-icons/fi";
-import { FiUser } from "react-icons/fi";
-import { FiUsers } from "react-icons/fi";
+
 import './Sidebar.scss';
 
 const sidebarNavItems = [
