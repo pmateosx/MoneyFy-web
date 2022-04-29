@@ -1,0 +1,25 @@
+.Greetings {
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05);
+    padding: 3rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    h2{
+        margin: 0;
+    }
+
+    .icon {
+        background-color: #deedff;;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 7rem;
+        height: 7rem;
+        font-size: 3rem;
+        margin-right: 2rem;
+    }
+}
