@@ -1,21 +1,38 @@
 import './Input.scss'
 
-const Input = () => {
+const Input = ({ category }) => {
+
     return(
         <form className='Input'>
             <div>
-                <label htmlFor="">Name</label>
-                <input type="text" name='name' />
-                <input type="number" name="amount" />
+                <input type="text" name='name' placeholder='Name'/>
+                <input type="number" name="amount" placeholder='Amount'/>
             </div>
             <div>
-                <label htmlFor="">Category</label>
-                <select name="category">
-                    <option value="value1">value1</option>
-                    <option value="value2">value2</option>
-                    <option value="value3">value3</option>
-                </select>
+                <label>Category</label>
+                {category=== 'expense' &&
+                    <select name="category">
+                        <option value="uncategorized">Uncategorized</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="house">House</option>
+                        <option value="insurance">insurance</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="food">Food</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="personal">Personal</option>
+                    </select>
+                }
+                {category=== 'income' &&
+                    <select name="category">
+                        <option value="uncategorized">Uncategorized</option>
+                        <option value="salary">Salary</option>
+                        <option value="personal sale">Personal sale</option>
+                        <option value="personal work">Personal work</option>
+                        <option value="investment benefits">Investment benefits</option>
+                    </select>
+                }
             </div>
+            {category === 'expense' || category === 'income' ? (<p>Is this a regular {category}? Insert a date</p>) : ''}
         <button>Create</button>
         </form>
     )

@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/AuthContext';
-import { logout } from '../../store/AccessTokenStore.js'
 import Modal from '../Modal/Modal';
 
 import { FiPlus } from "react-icons/fi";
@@ -11,9 +10,10 @@ import Input from '../Input/Input';
 
 const Navbar = () => {
     const { user } = useAuthContext();
-    const [showModal, setShowModal] = useState(false)
-    const [openDropdown, setOpenDropdown] = useState(false)
-    const [ modalTitle, setModalTitle] = useState()
+    const [ showModal, setShowModal ] = useState(false)
+    const [ openDropdown, setOpenDropdown ] = useState(false)
+    const [ modalTitle, setModalTitle ] = useState()
+    const [ inputCategory, setInputCategory ] = useState()
 
     const handleOpenModal = () => {
         setShowModal(true)
@@ -26,10 +26,10 @@ const Navbar = () => {
     const dropdownRef = useRef()
     const closeOutDropdown = e => dropdownRef.current === e.target ? setOpenDropdown(false) : ''
     
-    const sendInfo = (string) => {
-         setModalTitle(string)
+    const sendInfo = (title, category) => {
+        setModalTitle(title)
+        setInputCategory(category)
     }
-    console.log(modalTitle);
 
     return (
         <>
@@ -57,13 +57,13 @@ const Navbar = () => {
                    {/*  {user && <button className='button-out' onClick={()=>logout()}>Logout</button>} */}
                 </div>
             </div>
-            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <Input /></Modal>}
+            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <Input category={inputCategory}/></Modal>}
             {openDropdown && (
                 <div className='drop-screen' ref={dropdownRef} onClick={closeOutDropdown}>
                     <div className='dropdown'>
-                        <button className='dropdown-item' onClick={() => {handleOpenModal(); sendInfo('Add Expense', 1)}}>Expense</button>
-                        <button className='dropdown-item' onClick={() => {handleOpenModal(); sendInfo('Add Income', 2)}}>Income</button>
-                        <button className='dropdown-item' onClick={() => {handleOpenModal(); sendInfo('Add Goal', 3)}}>Goal</button>
+                        <button className='dropdown-item' onClick={() => {handleOpenModal(); sendInfo('Add Expense', 'expense')}}>Expense</button>
+                        <button className='dropdown-item' onClick={() => {handleOpenModal(); sendInfo('Add Income', 'income')}}>Income</button>
+                        <Link to='/goals' className='dropdown-item' onClick={() => setOpenDropdown(!openDropdown)}>Goal</Link>
                     </div>
                 </div>
                 )}
