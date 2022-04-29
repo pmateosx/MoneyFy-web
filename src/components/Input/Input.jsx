@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import { createExpense } from '../../services/ExpenseService'
@@ -6,6 +6,7 @@ import { useState } from 'react'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
 import './Input.scss'
+import { createIncome } from '../../services/IncomeService'
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
@@ -16,10 +17,13 @@ const schema = yup.object({
 const Input = ({ category, onClose }) => {
     const { user, getUser } = useAuthContext()
     const [error, setError] = useState(false)
+    let location = useLocation();
     const navigate = useNavigate()
     const {handleSubmit, register, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     })
+
+    let from = location.state?.from?.pathname || "/";
  
     const onSubmit = (data) => {
         const { id } = user
@@ -28,11 +32,22 @@ const Input = ({ category, onClose }) => {
         if( !name || !amount || !category){
             setError(true)
         } else {
+            category === 'expense' ? 
             createExpense({...data, user: id})
                 .then(expenseCreated => {
                     onClose()
                     getUser()
-                    navigate('/expenses')
+                    navigate(from, { replace: true })
+                })
+                .catch(err => {
+                    setError(err?.response?.data?.message)
+                })
+            :
+            createIncome({...data, user: id})
+                .then(incomeCreated => {
+                    onClose()
+                    getUser()
+                    navigate(from, { replace: true })
                 })
                 .catch(err => {
                     setError(err?.response?.data?.message)
@@ -58,7 +73,7 @@ const Input = ({ category, onClose }) => {
                 {/* <label>Category</label> */}
                 {category=== 'expense' &&
                     <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
-                        <option disabled selected> Select Category </option>
+                        <option disabled defaultValue> Select Category </option>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="house">House</option>
