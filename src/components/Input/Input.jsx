@@ -1,17 +1,38 @@
+import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../../contexts/AuthContext'
+import { useForm } from 'react-hook-form'
+import { createExpense } from '../../services/ExpenseService'
 import './Input.scss'
 
-const Input = ({ category }) => {
+const Input = ({ category, onClose }) => {
+    const { user, getUser } = useAuthContext()
+    const navigate = useNavigate()
+    const {handleSubmit, register } = useForm()
+
+    const onSubmit = (data) => {
+        const { id } = user
+
+        createExpense({...data, user: id})
+            .then((expenseCreated) => {
+                onClose()
+                getUser()
+                navigate('/expenses')
+            })
+            .catch(err => {
+                console.log(err?.response?.data)
+            })
+    }
 
     return(
-        <form className='Input'>
+        <form className='Input' onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input type="text" name='name' placeholder='Name'/>
-                <input type="number" name="amount" placeholder='Amount'/>
+                <input type="text" name='name' placeholder='Name' {...register('name')} />
+                <input type="number" name="amount" placeholder='Amount' {...register('amount')} /> <span>€</span>
             </div>
             <div>
                 <label>Category</label>
                 {category=== 'expense' &&
-                    <select name="category">
+                    <select name="category" {...register('category')}>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="house">House</option>
@@ -23,7 +44,7 @@ const Input = ({ category }) => {
                     </select>
                 }
                 {category=== 'income' &&
-                    <select name="category">
+                    <select name="category" {...register('category')}>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="salary">Salary</option>
                         <option value="personal sale">Personal sale</option>

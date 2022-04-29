@@ -11,7 +11,7 @@ const Modal = ({children, onClose, title}) => {
     return (
         <div className='Modal' ref={modalRef} onClick={closeOutModal}>
             <div className='modal-content'>
-                <button onClick={onClose}><FiXCircle/></button>
+                <button className='close-btn' onClick={onClose}><FiXCircle/></button>
                 <h3>{title}</h3>
                 {children}
             </div>
