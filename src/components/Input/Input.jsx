@@ -13,7 +13,7 @@ const Input = ({ category, onClose }) => {
         const { id } = user
 
         createExpense({...data, user: id})
-            .then((expenseCreated) => {
+            .then(expenseCreated => {
                 onClose()
                 getUser()
                 navigate('/expenses')
@@ -53,7 +53,16 @@ const Input = ({ category, onClose }) => {
                     </select>
                 }
             </div>
-            {category === 'expense' || category === 'income' ? (<p>Is this a regular {category}? Insert a date</p>) : ''}
+            {category === 'expense' || category === 'income' ? 
+            (   <>
+                <p> Is it a regular { category }? Indicate frequency</p>
+                <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
+                <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
+                <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
+                <br/>
+                </>) 
+            :
+             ''}
         <button>Create</button>
         </form>
     )
