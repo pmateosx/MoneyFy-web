@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
+import ProtectedRoute from './guards/ProtectedRoute';
 import AppLayout from './layout/AppLayout';
 import Blank from './views/Blank/Blank';
 import Dashboard from './views/Dashboard/Dashboard';
@@ -18,13 +19,15 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
 
-        <Route path='/' element={<AppLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path='/incomes' element={<Blank />} />
-          <Route path='/expenses' element={<Blank />} />
-          <Route path='/goals' element={<Blank />} />
-          <Route path='/commons' element={<Blank />} />
-          <Route path='/profile' element={<Profile/>}/>
+        <Route path="/" element={<ProtectedRoute/>} >
+          <Route path='/' element={<AppLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path='/incomes' element={<Blank />} />
+            <Route path='/expenses' element={<Blank />} />
+            <Route path='/goals' element={<Blank />} />
+            <Route path='/commons' element={<Blank />} />
+            <Route path='/profile' element={<Profile/>}/>
+          </Route>
         </Route>
       </Routes>
     </div>

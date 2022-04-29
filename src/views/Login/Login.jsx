@@ -32,7 +32,6 @@ const Login = () => {
 
     loginRequest(data)
       .then(response => {
-        console.log(response);
         login(response.access_token, () => navigate(from, { replace: true })) 
       })
       .catch(err => {
