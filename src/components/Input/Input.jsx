@@ -2,37 +2,63 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import { createExpense } from '../../services/ExpenseService'
+import { useState } from 'react'
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup'
 import './Input.scss'
+
+const schema = yup.object({
+  name: yup.string().required('Name is required'),
+  amount: yup.number().typeError('You must specify a number').required('Amount is required'),
+  category: yup.string().required('Category is required')
+}).required();
 
 const Input = ({ category, onClose }) => {
     const { user, getUser } = useAuthContext()
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
-    const {handleSubmit, register } = useForm()
-
+    const {handleSubmit, register, formState:{ errors } } = useForm({
+        resolver: yupResolver(schema)
+    })
+ 
     const onSubmit = (data) => {
         const { id } = user
+        const { name, amount, category } = data
 
-        createExpense({...data, user: id})
-            .then(expenseCreated => {
-                onClose()
-                getUser()
-                navigate('/expenses')
-            })
-            .catch(err => {
-                console.log(err?.response?.data)
-            })
+        if( !name || !amount || !category){
+            setError(true)
+        } else {
+            createExpense({...data, user: id})
+                .then(expenseCreated => {
+                    onClose()
+                    getUser()
+                    navigate('/expenses')
+                })
+                .catch(err => {
+                    setError(err?.response?.data?.message)
+                })
+        }
+
     }
 
     return(
         <form className='Input' onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input type="text" name='name' placeholder='Name' {...register('name')} />
-                <input type="number" name="amount" placeholder='Amount' {...register('amount')} /> <span>€</span>
+                <div>
+                    <input className={errors.name?.message ? 'invalid' : ''} type="text" name='name' placeholder='Name' {...register('name')} />
+                    {errors.name && <small style={{color: "red"}}>{errors.name?.message}</small>}
+                </div>
+                <div>
+                    <input className={errors.amount?.message ? 'invalid' : ''} type="number" name="amount" placeholder='Amount' {...register('amount')} /> <span>€</span>
+                    {errors.amount && <small style={{color: "red"}}>{errors.amount?.message}</small>}
+                </div>
             </div>
+
             <div>
-                <label>Category</label>
+                {/* <label>Category</label> */}
                 {category=== 'expense' &&
-                    <select name="category" {...register('category')}>
+                    <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
+                        <option disabled selected> Select Category </option>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="house">House</option>
@@ -44,7 +70,7 @@ const Input = ({ category, onClose }) => {
                     </select>
                 }
                 {category=== 'income' &&
-                    <select name="category" {...register('category')}>
+                    <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="salary">Salary</option>
                         <option value="personal sale">Personal sale</option>
@@ -52,17 +78,14 @@ const Input = ({ category, onClose }) => {
                         <option value="investment benefits">Investment benefits</option>
                     </select>
                 }
+                {errors.category && <small style={{color: "red"}}>{errors.category?.message}</small>}
             </div>
-            {category === 'expense' || category === 'income' ? 
-            (   <>
                 <p> Is it a regular { category }? Indicate frequency</p>
                 <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
                 <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
                 <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
                 <br/>
-                </>) 
-            :
-             ''}
+        {error && <><small className='invalid-2' >Error sending {category} </small> <br/></>}
         <button>Create</button>
         </form>
     )
