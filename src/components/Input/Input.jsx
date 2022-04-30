@@ -28,7 +28,6 @@ const Input = ({ sector, onClose }) => {
     const onSubmit = (data) => {
         const { id } = user
         const { name, amount, category } = data
-        console.log('category ->', category);
 
         if( !name || !amount || !category){
             setError(true)

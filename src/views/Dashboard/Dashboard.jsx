@@ -1,6 +1,7 @@
 import ApexChart from '../../components/ChartExpenseIncome/ChartExpenseIncome'
 import ExpensesModule from '../../components/ExpensesModule/ExpensesModule'
 import Greetings from '../../components/Greetings/Greetings'
+import IncomeModule from '../../components/IncomeModule/IncomeModule'
 import './Dashboard.scss'
 
 const Dashboard = () => {
@@ -14,7 +15,7 @@ const Dashboard = () => {
                             <ExpensesModule />
                         </div>
                         <div className='col-lg-6 module'>
-                            <ExpensesModule />
+                            <IncomeModule />
                         </div>
                     </div>
 
