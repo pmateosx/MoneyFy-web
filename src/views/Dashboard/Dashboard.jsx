@@ -1,3 +1,4 @@
+import ApexChart from '../../components/ChartExpenseIncome/ChartExpenseIncome'
 import Greetings from '../../components/Greetings/Greetings'
 import './Dashboard.scss'
 
@@ -9,7 +10,7 @@ const Dashboard = () => {
                     <Greetings />
                 </div>
                 <div className='col-lg-6'>
-                    <Greetings />
+                    <ApexChart />
                 </div>
             </div>
         </div>
