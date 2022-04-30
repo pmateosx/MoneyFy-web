@@ -37,8 +37,6 @@ const Navbar = () => {
                 <NavLink to='/home'>Logo</NavLink>
                 <div className='flexy'>
                     {user && <button className='add-btn' onClick={() => setOpenDropdown(!openDropdown)}> <FiPlus/></button>}
-                    {/* {user && <button className='add-btn' onClick={handleOpenModal}> <FiPlus/></button>} */}
-
                     {user ? 
                     (
                         <NavLink to='/profile' className='flexy navUser'>

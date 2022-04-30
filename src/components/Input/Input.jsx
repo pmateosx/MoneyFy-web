@@ -28,13 +28,14 @@ const Input = ({ category, onClose }) => {
     const onSubmit = (data) => {
         const { id } = user
         const { name, amount, category } = data
-
+        console.log('category', category);
         if( !name || !amount || !category){
             setError(true)
         } else {
             category === 'expense' ? 
             createExpense({...data, user: id})
                 .then(expenseCreated => {
+                    console.log('hereee');
                     onClose()
                     getUser()
                     navigate(from, { replace: true })
@@ -45,6 +46,7 @@ const Input = ({ category, onClose }) => {
             :
             createIncome({...data, user: id})
                 .then(incomeCreated => {
+                    console.log('please no hereee');
                     onClose()
                     getUser()
                     navigate(from, { replace: true })
@@ -91,7 +93,7 @@ const Input = ({ category, onClose }) => {
                     </select>
                 }
                 {category === 'income' &&
-                    <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
+                    <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="salary">Salary</option>
