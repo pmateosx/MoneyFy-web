@@ -14,7 +14,7 @@ const schema = yup.object({
   category: yup.string().required('Category is required')
 }).required();
 
-const Input = ({ category, onClose }) => {
+const Input = ({ sector, onClose }) => {
     const { user, getUser } = useAuthContext()
     const [error, setError] = useState(false)
     let location = useLocation();
@@ -28,13 +28,13 @@ const Input = ({ category, onClose }) => {
     const onSubmit = (data) => {
         const { id } = user
         const { name, amount, category } = data
-        console.log('category', category);
+        console.log('category ->', category);
+
         if( !name || !amount || !category){
             setError(true)
-        } else {
-            category === 'expense' ? 
+        } else if (sector === 'expense') {
             createExpense({...data, user: id})
-                .then(expenseCreated => {
+            .then(expenseCreated => {
                     console.log('hereee');
                     onClose()
                     getUser()
@@ -43,10 +43,10 @@ const Input = ({ category, onClose }) => {
                 .catch(err => {
                     setError(err?.response?.data?.message)
                 })
-            :
+        } else if(sector === 'income') {
             createIncome({...data, user: id})
-                .then(incomeCreated => {
-                    console.log('please no hereee');
+            .then(incomeCreated => {
+                    console.log('please no hereee')
                     onClose()
                     getUser()
                     navigate(from, { replace: true })
@@ -55,14 +55,13 @@ const Input = ({ category, onClose }) => {
                     setError(err?.response?.data?.message)
                 })
         }
-
     }
 
     return(
         <form className='Input' onSubmit={handleSubmit(onSubmit)}>
             <div className='input-group row'>
                 <div className='col-lg-8' id='cp'>
-                    <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {`Name of ${category}*`} {...register('name')} />
+                    <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {`Name of ${sector}*`} {...register('name')} />
                 </div>
                 <div className='col-lg-3 amount'>
                     <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} /> <span>€</span>
@@ -79,7 +78,7 @@ const Input = ({ category, onClose }) => {
 
             <div className='col-lg-12 category'>
                 {/* <label>Category</label> */}
-                {category === 'expense' &&
+                {sector === 'expense' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized*</option>
@@ -92,7 +91,7 @@ const Input = ({ category, onClose }) => {
                         <option value="personal">Personal</option>
                     </select>
                 }
-                {category === 'income' &&
+                {sector === 'income' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized</option>
@@ -105,14 +104,14 @@ const Input = ({ category, onClose }) => {
                 {errors.category && <small style={{color: "red"}}>{errors.category?.message}</small>}
             </div>
             <div className='frecuency col-lg-12'>
-                <p>Is it a regular { category }? Indicate frequency</p>
+                <p>Is it a regular { sector }? Indicate frequency</p>
                 <div className='frecuency-radio'>
                     <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
                     <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
                     <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
                 </div>
             </div>
-        {error && <><small className='invalid-2' >Error sending {category} </small> <br/></>}
+        {error && <><small className='invalid-2' >Error sending {sector} </small> <br/></>}
         <button className='input-btn'>Create</button>
         </form>
     )

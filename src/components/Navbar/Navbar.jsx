@@ -55,7 +55,7 @@ const Navbar = () => {
                    {/*  {user && <button className='button-out' onClick={()=>logout()}>Logout</button>} */}
                 </div>
             </div>
-            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <Input onClose={handleCloseModal} category={inputCategory}/></Modal>}
+            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <Input onClose={handleCloseModal} sector={inputCategory}/></Modal>}
             {openDropdown && (
                 <div className='drop-screen' ref={dropdownRef} onClick={closeOutDropdown}>
                     <div className='dropdown'>
