@@ -35,7 +35,6 @@ const Input = ({ sector, onClose }) => {
         } else if (sector === 'expense') {
             createExpense({...data, user: id})
             .then(expenseCreated => {
-                    console.log('hereee');
                     onClose()
                     getUser()
                     navigate(from, { replace: true })
@@ -46,7 +45,6 @@ const Input = ({ sector, onClose }) => {
         } else if(sector === 'income') {
             createIncome({...data, user: id})
             .then(incomeCreated => {
-                    console.log('please no hereee')
                     onClose()
                     getUser()
                     navigate(from, { replace: true })
