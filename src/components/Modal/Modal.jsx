@@ -12,7 +12,7 @@ const Modal = ({children, onClose, title}) => {
         <div className='Modal' ref={modalRef} onClick={closeOutModal}>
             <div className='modal-content'>
                 <button className='close-btn' onClick={onClose}><FiXCircle/></button>
-                <h3>{title}</h3>
+                <h2 className='title'>{title}</h2>
                 {children}
             </div>
         </div>

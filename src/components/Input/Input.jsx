@@ -58,23 +58,29 @@ const Input = ({ category, onClose }) => {
 
     return(
         <form className='Input' onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <div>
-                    <input className={errors.name?.message ? 'invalid' : ''} type="text" name='name' placeholder='Name' {...register('name')} />
-                    {errors.name && <small style={{color: "red"}}>{errors.name?.message}</small>}
+            <div className='input-group row'>
+                <div className='col-lg-8' id='cp'>
+                    <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {`Name of ${category}*`} {...register('name')} />
                 </div>
-                <div>
-                    <input className={errors.amount?.message ? 'invalid' : ''} type="number" name="amount" placeholder='Amount' {...register('amount')} /> <span>€</span>
-                    {errors.amount && <small style={{color: "red"}}>{errors.amount?.message}</small>}
+                <div className='col-lg-3 amount'>
+                    <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} /> <span>€</span>
                 </div>
             </div>
+                <div className='row input-group'>
+                    <div className='col-lg-8'>
+                        {errors.name && <small style={{color: "red"}}>{errors.name?.message}</small>}
+                    </div>
+                    <div className='col-lg-3'>
+                        {errors.amount && <small style={{color: "red"}}>{errors.amount?.message}</small>}
+                    </div>
+                </div>
 
-            <div>
+            <div className='col-lg-12 category'>
                 {/* <label>Category</label> */}
-                {category=== 'expense' &&
-                    <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
-                        <option disabled defaultValue> Select Category </option>
-                        <option value="uncategorized">Uncategorized</option>
+                {category === 'expense' &&
+                    <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
+                        <option disabled> Select Category </option>
+                        <option value="uncategorized">Uncategorized*</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="house">House</option>
                         <option value="insurance">insurance</option>
@@ -84,8 +90,9 @@ const Input = ({ category, onClose }) => {
                         <option value="personal">Personal</option>
                     </select>
                 }
-                {category=== 'income' &&
+                {category === 'income' &&
                     <select className={errors.category?.message ? 'invalid' : ''} name="category" {...register('category')}>
+                        <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized</option>
                         <option value="salary">Salary</option>
                         <option value="personal sale">Personal sale</option>
@@ -95,13 +102,16 @@ const Input = ({ category, onClose }) => {
                 }
                 {errors.category && <small style={{color: "red"}}>{errors.category?.message}</small>}
             </div>
-                <p> Is it a regular { category }? Indicate frequency</p>
-                <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
-                <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
-                <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
-                <br/>
+            <div className='frecuency col-lg-12'>
+                <p>Is it a regular { category }? Indicate frequency</p>
+                <div className='frecuency-radio'>
+                    <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
+                    <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
+                    <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
+                </div>
+            </div>
         {error && <><small className='invalid-2' >Error sending {category} </small> <br/></>}
-        <button>Create</button>
+        <button className='input-btn'>Create</button>
         </form>
     )
 }
