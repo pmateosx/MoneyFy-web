@@ -22,12 +22,12 @@ const BalanceModule = () => {
 
     return (
         <div className='BalanceModule'>
-            <div className='balance-title'>
+{/*             <div className='balance-title'>
                 <h3>Balance</h3>
                 <span>{total}</span>
-            </div>
+            </div> */}
             <div className='chart-div'>
-                <BalanceChart/>
+                <BalanceChart totalBalance= {total} userInfo={user}/>
             </div>
         </div>
     )

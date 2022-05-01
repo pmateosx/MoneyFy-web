@@ -1,6 +1,6 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-
+import './BalanceChart.scss'
 class BalanceChart extends React.Component {
   constructor(props) {
     super(props);
@@ -9,19 +9,14 @@ class BalanceChart extends React.Component {
       series: [
         {
           name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-          name: "series2",
-          data: [11, 32, 45, 32, 34, 52, 41],
-        },
+          data: [0, props.totalBalance]
+        }
       ],
       options: {
         chart: {
-            width: '100%',
-            toolbar: false,
-            height: 100,
-            type: "area",
+          toolbar: false,
+          width: '100%',
+          type: "area",
         },
         legend: {
             show: false,
@@ -40,16 +35,12 @@ class BalanceChart extends React.Component {
             show: false,
 
         },
+
         xaxis: {
                 type: "datetime",
                 categories: [
-                "2018-09-19T00:00:00.000Z",
-                "2018-09-19T01:30:00.000Z",
-                "2018-09-19T02:30:00.000Z",
-                "2018-09-19T03:30:00.000Z",
-                "2018-09-19T04:30:00.000Z",
-                "2018-09-19T05:30:00.000Z",
-                "2018-09-19T06:30:00.000Z",
+                this.getUserCreateTime(),
+                "2022-05-01T17:42:26.595Z",
                 ],
                 labels: {
                     show: false,
@@ -69,15 +60,27 @@ class BalanceChart extends React.Component {
       },
     };
   }
+  
+  getUserCreateTime() {
+    return this.props.userInfo?.createdAt
+  }
+
+  getCurrentDate() {
+    const today = new Date();
+    return today.toISOString()
+  }
 
   render() {
+    console.log( "currentTime ->",this.getCurrentDate())
+    console.log( "USER Time ->",this.getUserCreateTime())
     return (
+      
       <div id="chart">
         <ReactApexChart
           options={this.state.options}
           series={this.state.series}
           type="area"
-          height={100}
+          height={'100'}
         />
       </div>
     );
@@ -85,3 +88,5 @@ class BalanceChart extends React.Component {
 }
 
 export default BalanceChart
+
+
