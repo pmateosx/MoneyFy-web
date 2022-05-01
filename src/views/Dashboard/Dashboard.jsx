@@ -34,7 +34,7 @@ const Dashboard = () => {
                     <GoalProgress/>
                 </div>
                 <div className='col-lg-4 module'>
-                    <LasMovementsModule />
+                    <LasMovementsModule type={'expense'}/>
                 </div>
             </div>
         </div>

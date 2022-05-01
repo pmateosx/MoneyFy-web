@@ -71,8 +71,6 @@ class BalanceChart extends React.Component {
   }
 
   render() {
-    console.log( "currentTime ->",this.getCurrentDate())
-    console.log( "USER Time ->",this.getUserCreateTime())
     return (
       
       <div id="chart">

@@ -13,9 +13,12 @@
 
     h2 {
         margin: 0;
+        font-weight: 500;
     }
-
+    
     .container-timeline{
+        overflow: scroll;
+       /*  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent); */
 
         .ul-timeline{
             display: flex;
@@ -24,6 +27,7 @@
             flex-direction: column;
             margin: 0;
             padding: 1.5rem 0 0 0;
+            
             
             .li-container{
                 display: flex;
@@ -70,10 +74,13 @@
                     margin-left: 1rem;
 
                     h4{
+                        color: rgb(0, 0, 0);
+                        font-weight: 400;
                         margin: 0;
                     }
 
                     #amount {
+                        font-weight: 400;
                         margin: 0;
                         display: flex;
                         float: right;
@@ -85,3 +92,7 @@
     }
 
 }
+
+.container-timeline::-webkit-scrollbar {
+    display: none;
+    }
