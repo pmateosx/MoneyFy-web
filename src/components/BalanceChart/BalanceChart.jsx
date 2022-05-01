@@ -1,6 +1,8 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import './BalanceChart.scss'
+import dayjs from "dayjs"
+
 class BalanceChart extends React.Component {
   constructor(props) {
     super(props);
@@ -33,14 +35,12 @@ class BalanceChart extends React.Component {
         },
         yaxis: {
             show: false,
-
         },
-
         xaxis: {
                 type: "datetime",
                 categories: [
-                this.getUserCreateTime(),
-                "2022-05-01T17:42:26.595Z",
+               this.getUserCreateTime(),
+                this.getCurrentDate(),
                 ],
                 labels: {
                     show: false,
@@ -54,7 +54,8 @@ class BalanceChart extends React.Component {
         },
         tooltip: {
           x: {
-            format: "dd/MM/yy HH:mm",
+            show: true,
+            format: "dd/MMM/yy",
           },
         },
       },
@@ -62,12 +63,12 @@ class BalanceChart extends React.Component {
   }
   
   getUserCreateTime() {
-    return this.props.userInfo?.createdAt
+    return dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY')
   }
 
   getCurrentDate() {
-    const today = new Date();
-    return today.toISOString()
+    const date = new Date();
+    return dayjs(date).format('DD/MMM/YY')
   }
 
   render() {

@@ -11,14 +11,10 @@ const LasMovementsModule = ( {type} ) => {
             setMovement(user?.expense)
         },[user?.expense])
 
-console.log(user?.expense);
-    // -----> funcion para transformar fecha a solo "dia + mes"
-
     const getDateFormat = (date) => {
         return dayjs(date).format('DD MMM')
     }
-
-    console.log(getDateFormat("2022-04-30T21:52:17.223Z"));
+    
   return (
     <div className="LastMovementsModule">
         <h2>Last 3 movements</h2>
@@ -38,7 +34,7 @@ console.log(user?.expense);
                     <div className="text">
                         <h4>{mov.name}</h4>
                         <small>{(mov.category).charAt(0).toUpperCase() + mov.category.slice(1)}</small>
-                        <h3 id="amount">{mov.amount}€</h3>
+                        <h3 id="amount">-{mov.amount}€</h3>
                     </div>
                 </li>)
                 })
