@@ -30,10 +30,10 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className='row'>
-                <div className='col-lg-8 module'>
+                <div className='col-lg-7 module'>
                     <GoalProgress/>
                 </div>
-                <div className='col-lg-3 module'>
+                <div className='col-lg-4 module'>
                     <LasMovementsModule />
                 </div>
             </div>
