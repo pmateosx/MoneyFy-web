@@ -1,3 +1,4 @@
+import BalanceModule from '../../components/BalanceModule/BalanceModule'
 import ApexChart from '../../components/ChartExpenseIncome/ChartExpenseIncome'
 import ExpensesModule from '../../components/ExpensesModule/ExpensesModule'
 import Greetings from '../../components/Greetings/Greetings'
@@ -18,7 +19,9 @@ const Dashboard = () => {
                             <IncomeModule />
                         </div>
                     </div>
-
+                    <div className='col-lg-12 module'>
+                        <BalanceModule/>
+                    </div>
                 </div>
                 <div className='col-lg-6 module'>
                     <ApexChart />
