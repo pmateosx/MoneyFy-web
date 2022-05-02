@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import dayjs from "dayjs"
 import './IncomeDetails.scss'
+import { deleteIncome } from "../../../services/IncomeService";
 
 const IncomeDetails = () => {
     const {user, getUser } = useAuthContext()
@@ -12,11 +13,16 @@ const IncomeDetails = () => {
     useEffect(() => {
         let incomes = user?.income
         setAllIncomes(incomes)
-        getUser()
-    },[user?.income, getUser])
+    },[user?.income])
+
 
     const getDateFormat = (date) => {
         return dayjs(date).format('DD MMM')
+    }
+
+    const handleDelete = (id) => {
+        deleteIncome(id)
+        getUser()
     }
 
     return (
@@ -33,7 +39,7 @@ const IncomeDetails = () => {
                         {editing &&
                             <div>
                                 <div className='edit'>
-                                    <button className='edit-btn'>
+                                    <button className='edit-btn' onClick={() => handleDelete(income.id)}>
                                         <FiTrash />
                                     </button>
                                     <button className='delete-btn'>

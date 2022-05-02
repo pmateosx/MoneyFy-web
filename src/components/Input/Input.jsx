@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+/* import { useLocation, useNavigate } from 'react-router-dom' */
 import { useAuthContext } from '../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import { createExpense } from '../../services/ExpenseService'
@@ -17,13 +17,13 @@ const schema = yup.object({
 const Input = ({ sector, onClose }) => {
     const { user, getUser } = useAuthContext()
     const [error, setError] = useState(false)
-    let location = useLocation();
-    const navigate = useNavigate()
+/*     let location = useLocation();
+    const navigate = useNavigate() */
     const {handleSubmit, register, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     })
 
-    let from = location.state?.from?.pathname || "/";
+    /* let from = location.state?.from?.pathname || "/"; */
  
     const onSubmit = (data) => {
         const { id } = user
@@ -36,7 +36,7 @@ const Input = ({ sector, onClose }) => {
             .then(expenseCreated => {
                     onClose()
                     getUser()
-                    navigate(from, { replace: true })
+                   /*  navigate(from, { replace: true }) */
                 })
                 .catch(err => {
                     setError(err?.response?.data?.message)
@@ -46,7 +46,7 @@ const Input = ({ sector, onClose }) => {
             .then(incomeCreated => {
                     onClose()
                     getUser()
-                    navigate(from, { replace: true })
+                   /*  navigate(from, { replace: true }) */
                 })
                 .catch(err => {
                     setError(err?.response?.data?.message)
