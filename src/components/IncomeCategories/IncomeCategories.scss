@@ -9,14 +9,22 @@
     margin: 1rem;
     height: 43rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+
+    h3 {
+        margin: 1rem;
+    }
 
     .legend{
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        width: 20rem;
 
         h4 {
             color: #1C8FFC;
+            margin: 0;
         }
         .circle{
             width: 10px;

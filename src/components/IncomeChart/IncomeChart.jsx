@@ -44,7 +44,7 @@ class IncomeChart extends React.Component {
     render() {
       return (
         <div id="chart">
-            <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={400} />
+            <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={300} />
         </div>
       )
     }

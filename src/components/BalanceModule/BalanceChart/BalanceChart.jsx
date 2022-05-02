@@ -10,8 +10,8 @@ class BalanceChart extends React.Component {
     this.state = {
       series: [
         {
-          name: "series1",
-          data: [0, props.totalBalance]
+          name: "Balance",
+          data: []
         }
       ],
       options: {
@@ -39,8 +39,8 @@ class BalanceChart extends React.Component {
         xaxis: {
                 type: "datetime",
                 categories: [
-               this.getUserCreateTime(),
-                this.getCurrentDate(),
+                  this.getUserCreateTime(),
+                  this.getCurrentDate(),
                 ],
                 labels: {
                     show: false,
@@ -70,6 +70,19 @@ class BalanceChart extends React.Component {
     const date = new Date();
     return dayjs(date).format('DD/MMM/YY')
   }
+
+  componentDidMount(){
+    console.log('Total Balance ->>',this.props.totalBalance)
+    this.setState({
+      series: [
+        {
+          data: [ 0, this.props?.totalBalance]
+        }
+      ]
+    })
+    console.log(this.state.series);
+  }
+  
 
   render() {
     return (

@@ -5,7 +5,7 @@ import './BalanceModule.scss'
 
 const BalanceModule = () => {
     const [total, setTotal] = useState()
-    const { user } = useAuthContext()
+    const { user, getUser } = useAuthContext()
 
     useEffect(()=> {
         let expenses = 0
@@ -18,7 +18,8 @@ const BalanceModule = () => {
         }
         let totalSum = incomes - expenses
         setTotal(totalSum)
-    },[user?.income, user?.expense])
+        getUser()
+    },[user?.income, user?.expense, getUser])
 
     return (
         <div className='BalanceModule'>
@@ -27,7 +28,7 @@ const BalanceModule = () => {
                 <span>{total}</span>
             </div> */}
             <div className='chart-div'>
-                <BalanceChart totalBalance= {total} userInfo={user}/>
+                <BalanceChart totalBalance={total} userInfo={user}/>
             </div>
         </div>
     )
