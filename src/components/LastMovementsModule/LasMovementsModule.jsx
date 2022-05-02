@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
-import "./LasMovementsModule.scss";
 import dayjs from "dayjs"
+import "./LasMovementsModule.scss";
 
 const LasMovementsModule = ( {type} ) => {
     const [movement, setMovement] = useState([])
