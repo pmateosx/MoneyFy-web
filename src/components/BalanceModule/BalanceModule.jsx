@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
-import BalanceChart from '../BalanceChart/BalanceChart'
+import BalanceChart from './BalanceChart/BalanceChart'
 import './BalanceModule.scss'
 
 const BalanceModule = () => {

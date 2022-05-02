@@ -1,4 +1,6 @@
+import IncomeCategories from '../../components/IncomeCategories/IncomeCategories'
 import IncomeChart from '../../components/IncomeChart/IncomeChart'
+import LasMovementsModule from '../../components/LastMovementsModule/LasMovementsModule'
 import './Income.scss'
 
 const Income = () => {
@@ -6,7 +8,6 @@ const Income = () => {
         <div className='container Income'>
             <div className='row'>
                 <div className='col-lg-11 module container-income'>
-
                     <div className='income-head'>
                         <h2>Income Balance  💸</h2>
                         <div>
@@ -14,7 +15,6 @@ const Income = () => {
                                 <span className='circle'></span>
                                 <h4>Incomes</h4>
                             </div>
-
                         </div>
                     </div>
 
@@ -34,6 +34,14 @@ const Income = () => {
                             <IncomeChart />
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-lg-7 module'>
+                    <IncomeCategories />
+                </div>
+                <div className='col-lg-4 module'>
+                    <LasMovementsModule type={'income'}/>
                 </div>
             </div>
         </div>

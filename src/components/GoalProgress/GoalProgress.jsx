@@ -1,4 +1,4 @@
-import GoalProgressChart from '../GoalProgressChart/GoalPRogressChart'
+import GoalProgressChart from './GoalProgressChart/GoalPRogressChart'
 import './GoalProgress.scss'
 
 const GoalProgress = () => {
