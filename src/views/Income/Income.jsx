@@ -1,5 +1,5 @@
 import IncomeCategories from '../../components/IncomeCategories/IncomeCategories'
-import IncomeDetails from '../../components/IncomeCategories/IncomeDetails/IncomeDetails'
+import IncomeDetails from '../../components/IncomeDetails/IncomeDetails'
 import IncomeChart from '../../components/IncomeChart/IncomeChart'
 import './Income.scss'
 

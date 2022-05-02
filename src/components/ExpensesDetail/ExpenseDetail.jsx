@@ -1,25 +1,25 @@
-import { FiTrendingUp, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
+import { FiShoppingBag, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import dayjs from "dayjs"
-import './IncomeDetails.scss'
-import { deleteIncome } from "../../../services/IncomeService";
-import Modal from "../../Modal/Modal";
-import EditInput from "../../EditInput/EditInput";
+import './ExpenseDetail.scss'
+import Modal from "../Modal/Modal";
+import EditInput from "../EditInput/EditInput";
+import { deleteExpense } from "../../services/ExpenseService";
 
-const IncomeDetails = () => {
+const ExpenseDetails = () => {
     const {user, getUser } = useAuthContext()
     const [editing, setEditing] = useState(false)
-    const [ allIncomes, setAllIncomes] = useState([])
+    const [ allExpenses, setAllExpenses] = useState([])
     const [ showModal, setShowModal ] = useState(false)
     const [ modalTitle, setModalTitle ] = useState()
     const [ inputCategory, setInputCategory ] = useState()
     const [ targetId, setTargetId ] = useState()
 
     useEffect(() => {
-        const incomes = user?.income
-        setAllIncomes(incomes)
-    },[user?.income])
+        const expenses = user?.expense
+        setAllExpenses(expenses)
+    },[user?.expense])
 
 
     const getDateFormat = (date) => {
@@ -27,7 +27,7 @@ const IncomeDetails = () => {
     }
 
     const handleDelete = (id) => {
-        deleteIncome(id)
+        deleteExpense(id)
         getUser()
     }
 
@@ -38,43 +38,43 @@ const IncomeDetails = () => {
     const handleEdit = (id) => {
         setShowModal(true)
         setTargetId(id)
-        setModalTitle('Edit your income')
-        setInputCategory('editIncome')
+        setModalTitle('Edit your Expense')
+        setInputCategory('editExpense')
     }
 
     return (
-        <div className='IncomeDetails'>
+        <div className='ExpenseDetails'>
         {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
             <div className='head'>
-                <h3>Your Incomes</h3>
+                <h3>Your Expenses</h3>
                 <button id='edit-state' onClick={() => setEditing(!editing)}>Edit <FiEdit3/></button>
             </div>
             <div className="limit">
-            { allIncomes?.length > 0 ?
+            { allExpenses?.length > 0 ?
                 (
-                    allIncomes.map((income, index) => 
-                    <div className='income-container' key={index}>
+                    allExpenses.map((expense, index) => 
+                    <div className='expense-container' key={index}>
                         {editing &&
                             <div>
                                 <div className='edit'>
-                                    <button className='edit-btn' onClick={() => handleDelete(income.id)}>
+                                    <button className='edit-btn' onClick={() => handleDelete(expense.id)}>
                                         <FiTrash />
                                     </button>
-                                    <button className='delete-btn' onClick={() => handleEdit(income.id)}>
+                                    <button className='delete-btn' onClick={() => handleEdit(expense.id)}>
                                         <FiEdit />
                                     </button>
                                 </div>
                             </div>
                         }
                         <div className='icon'>
-                            <FiTrendingUp />
+                            <FiShoppingBag />
                         </div>
                         <div className='middle-content'>
-                            <h4>{income.name}</h4>
-                            <small>{(income.category).charAt(0).toUpperCase() + income.category.slice(1) } | {getDateFormat(income.createdAt).toUpperCase()}</small>
+                            <h4>{expense.name}</h4>
+                            <small>{(expense.category).charAt(0).toUpperCase() + expense.category.slice(1) } | {getDateFormat(expense.createdAt).toUpperCase()}</small>
                         </div>
                         <div className='amount'>
-                            <h3>{income.amount}€</h3>
+                            <h3>-{expense.amount}€</h3>
                         </div>
                     </div>
                     )
@@ -82,7 +82,7 @@ const IncomeDetails = () => {
                 )
                 :
                 (
-                    <h4>You dont have incomes yet</h4>
+                    <h4>You dont have expenses yet</h4>
                 )
             }
                             
@@ -91,4 +91,4 @@ const IncomeDetails = () => {
     )
 }
 
-export default IncomeDetails
+export default ExpenseDetails
