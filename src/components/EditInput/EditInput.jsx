@@ -1,61 +1,66 @@
-/* import { useLocation, useNavigate } from 'react-router-dom' */
-import { useAuthContext } from '../../contexts/AuthContext'
-import { useForm } from 'react-hook-form'
-import { createExpense } from '../../services/ExpenseService'
-import { createIncome } from '../../services/IncomeService'
-import { useState } from 'react'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
-import './Input.scss'
+import { useForm } from 'react-hook-form'
+import { updateIncome, getIncome } from '../../services/IncomeService'
+import './EditInput.scss'
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../../contexts/AuthContext";
+
 
 const schema = yup.object({
-  name: yup.string().required('Name is required'),
-  amount: yup.number().typeError('You must specify a number').required('Amount is required'),
-  category: yup.string().required('Category is required')
-}).required();
+    name: yup.string().required('Name is required'),
+    amount: yup.number().typeError('You must specify a number').required('Amount is required'),
+    category: yup.string().required('Category is required')
+  }).required();
 
-const Input = ({ sector, onClose }) => {
-    const { user, getUser } = useAuthContext()
+const EditInput = ({ sector, target, onClose }) => {
+    const { getUser } = useAuthContext()
+    const [ targetValue, setTargetValue] = useState({})
     const [error, setError] = useState(false)
-
-/*     let location = useLocation();
-    const navigate = useNavigate() */
-    const {handleSubmit, register, formState:{ errors } } = useForm({
+    const {handleSubmit, register, formState:{ errors }, setValue } = useForm({
         resolver: yupResolver(schema)
     })
 
-    /* let from = location.state?.from?.pathname || "/"; */
-    
+    useEffect(() => {
+        getIncome(target)
+            .then((incomeFound) => {
+                /* setTargetValue(incomeFound) */
+                setValue('name', incomeFound.name)
+                setValue('amount', incomeFound.amount)
+            })
+            .catch( err => console.log(err))
+    },[target, setValue])
+
+/*     const handleChange = (e) => {
+        const { name, value } = e.target
+
+        setTargetValue({
+            [name]: value
+        })
+        console.log('E.target ->>', e.target);
+
+    } */
+
     const onSubmit = (data) => {
-        const { id } = user
         const { name, amount, category } = data
+        console.log('DATA ->>', data);
 
         if( !name || !amount || !category){
             setError(true)
-        } else if (sector === 'expense') {
-            createExpense({...data, user: id})
-            .then(expenseCreated => {
+        } else if (sector === 'editIncome'){
+            updateIncome(target, {data})
+                .then(() => {
                     onClose()
                     getUser()
-                   /*  navigate(from, { replace: true }) */
                 })
-                .catch(err => {
-                    setError(err?.response?.data?.message)
-                })
-        } else if(sector === 'income') {
-            createIncome({...data, user: id})
-            .then(incomeCreated => {
-                    onClose()
-                    getUser()
-                   /*  navigate(from, { replace: true }) */
-                })
-                .catch(err => {
-                    setError(err?.response?.data?.message)
-                })
+                .catch( err => console.log(err))
         }
     }
 
-    return(
+    console.log('Target Id ->>', target);
+    console.log('Sector ->>', sector);
+
+    return (
         <form className='Input' onSubmit={handleSubmit(onSubmit)}>
             <div className='input-group row'>
                 <div className='col-lg-8' id='cp'>
@@ -125,4 +130,4 @@ const Input = ({ sector, onClose }) => {
     )
 }
 
-export default Input
+export default EditInput

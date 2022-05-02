@@ -21,10 +21,6 @@
             color: rgb(117, 117, 117);
         }
     }
-.limit {
-    padding-bottom: 3rem;
-    height: 33rem;
-    overflow: scroll;
 
     .income-container{
         display: flex;
@@ -91,8 +87,14 @@
         }
     }
     }
-}
 
-.container-timeline::-webkit-scrollbar {
+    .limit {
+        height: 33rem;
+        background-color: white;
+        overflow: scroll;
+        border: none;   
+    }
+
+.limit::-webkit-scrollbar {
     display: none;
     }

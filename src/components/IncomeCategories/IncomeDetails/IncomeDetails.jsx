@@ -4,14 +4,20 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import dayjs from "dayjs"
 import './IncomeDetails.scss'
 import { deleteIncome } from "../../../services/IncomeService";
+import Modal from "../../Modal/Modal";
+import EditInput from "../../EditInput/EditInput";
 
 const IncomeDetails = () => {
     const {user, getUser } = useAuthContext()
     const [editing, setEditing] = useState(false)
     const [ allIncomes, setAllIncomes] = useState([])
+    const [ showModal, setShowModal ] = useState(false)
+    const [ modalTitle, setModalTitle ] = useState()
+    const [ inputCategory, setInputCategory ] = useState()
+    const [ targetId, setTargetId ] = useState()
 
     useEffect(() => {
-        let incomes = user?.income
+        const incomes = user?.income
         setAllIncomes(incomes)
     },[user?.income])
 
@@ -25,8 +31,20 @@ const IncomeDetails = () => {
         getUser()
     }
 
+    const handleCloseModal = () => {
+        setShowModal(false)
+    }
+
+    const handleEdit = (id) => {
+        setShowModal(true)
+        setTargetId(id)
+        setModalTitle('Edit your income')
+        setInputCategory('editIncome')
+    }
+
     return (
         <div className='IncomeDetails'>
+        {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
             <div className='head'>
                 <h3>Your Incomes</h3>
                 <button id='edit-state' onClick={() => setEditing(!editing)}>Edit <FiEdit3/></button>
@@ -42,7 +60,7 @@ const IncomeDetails = () => {
                                     <button className='edit-btn' onClick={() => handleDelete(income.id)}>
                                         <FiTrash />
                                     </button>
-                                    <button className='delete-btn'>
+                                    <button className='delete-btn' onClick={() => handleEdit(income.id)}>
                                         <FiEdit />
                                     </button>
                                 </div>
@@ -52,7 +70,7 @@ const IncomeDetails = () => {
                             <FiTrendingUp />
                         </div>
                         <div className='middle-content'>
-                            <h4>{income.name}e</h4>
+                            <h4>{income.name}</h4>
                             <small>{(income.category).charAt(0).toUpperCase() + income.category.slice(1) } | {getDateFormat(income.createdAt).toUpperCase()}</small>
                         </div>
                         <div className='amount'>
