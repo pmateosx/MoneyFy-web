@@ -1,6 +1,6 @@
 import IncomeCategories from '../../components/IncomeCategories/IncomeCategories'
+import IncomeDetails from '../../components/IncomeCategories/IncomeDetails/IncomeDetails'
 import IncomeChart from '../../components/IncomeChart/IncomeChart'
-import LasMovementsModule from '../../components/LastMovementsModule/LasMovementsModule'
 import './Income.scss'
 
 const Income = () => {
@@ -41,7 +41,7 @@ const Income = () => {
                     <IncomeCategories />
                 </div>
                 <div className='col-lg-4 module'>
-                    <LasMovementsModule type={'income'}/>
+                    <IncomeDetails />
                 </div>
             </div>
         </div>
