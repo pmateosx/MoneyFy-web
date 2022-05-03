@@ -1,4 +1,3 @@
-import IncomeCategories from '../../components/IncomeCategories/IncomeCategories'
 import ExpenseDetails from '../../components/ExpensesDetail/ExpenseDetail'
 import ExpenseChart from '../../components/ExpenseChart/ExpenseChart'
 import './Expense.scss'

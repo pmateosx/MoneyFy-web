@@ -15,7 +15,7 @@ const IncomeCategories = () => {
     return (
         <div className='IncomeCategories'>
             <div className='content'>
-                <h2>{totalIncomes > 0 && totalIncomes + ' incomes'}</h2>
+                <h2>{totalIncomes > 0 && totalIncomes + ' Registered'}</h2>
                 <div>
                     <h3>Categories</h3>
                     <div className='legend'>
