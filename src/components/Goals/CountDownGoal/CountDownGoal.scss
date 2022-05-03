@@ -1,0 +1,38 @@
+.CountDownGoal{
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.1);
+    margin: 1rem;
+    width: 96%;
+    max-height: 11.1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 2rem;
+    height: 11rem;
+
+    .icon {
+        background-color: rgb(221, 221, 221);
+        border-radius: 10px;
+        padding: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .content {
+        margin-left: 3rem;
+        
+        h4 {
+            margin: 0;
+            font-weight: 300;
+            margin-right: 1rem;
+        }
+        h3 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 500;
+            margin-right: 1rem;
+        }
+    }
+
+}

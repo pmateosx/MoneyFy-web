@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useAuthContext } from '../../contexts/AuthContext'
-import BalanceChart from './BalanceChart/BalanceChart'
-import './BalanceModule.scss'
+import { useAuthContext } from '../../../contexts/AuthContext'
+import './BalanceModuleGoals.scss'
 
-const BalanceModule = () => {
+const BalanceModuleGoals = () => {
     const [total, setTotal] = useState()
     const { user } = useAuthContext()
 
@@ -20,17 +19,16 @@ const BalanceModule = () => {
         setTotal(totalSum)
     },[user?.income, user?.expense])
 
-    return (
-        <div className='BalanceModule'>
-{/*             <div className='balance-title'>
-                <h3>Balance</h3>
-                <span>{total}</span>
-            </div> */}
-            <div className='chart-div'>
-                <BalanceChart totalBalance={total} userInfo={user}/>
-            </div>
+    return(
+        <div className='BalanceModuleGoals'>
+                <h4>Total Balance</h4>
+            {total ? 
+                <h3>{total}€</h3>
+                :
+                <h4>No info yet</h4>
+            }
         </div>
     )
 }
 
-export default BalanceModule
+export default BalanceModuleGoals
