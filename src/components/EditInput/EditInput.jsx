@@ -5,6 +5,7 @@ import { updateIncome, getIncome } from '../../services/IncomeService'
 import './EditInput.scss'
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { getExpense, updateExpense } from "../../services/ExpenseService";
 
 
 const schema = yup.object({
@@ -21,25 +22,25 @@ const EditInput = ({ sector, target, onClose }) => {
     })
 
     useEffect(() => {
-        getIncome(target)
-            .then((incomeFound) => {
-                /* setTargetValue(incomeFound) */
-                setValue('name', incomeFound.name)
-                setValue('amount', incomeFound.amount)
-                setValue('category', incomeFound.category)
+        if (sector === 'editIncome'){
+            getIncome(target)
+                .then((incomeFound) => {
+                    /* setTargetValue(incomeFound) */
+                    setValue('name', incomeFound.name)
+                    setValue('amount', incomeFound.amount)
+                    setValue('category', incomeFound.category)
+                })
+                .catch( err => console.log(err))
+        } else if (sector === 'editExpense') {
+            getExpense(target)
+            .then((expenseFound) => {
+                setValue('name', expenseFound.name)
+                setValue('amount', expenseFound.amount)
+                setValue('category', expenseFound.category)
             })
             .catch( err => console.log(err))
-    },[target, setValue])
-
-/*     const handleChange = (e) => {
-        const { name, value } = e.target
-
-        setTargetValue({
-            [name]: value
-        })
-        console.log('E.target ->>', e.target);
-
-    } */
+        }
+    },[target, setValue, sector])
 
     const onSubmit = (data) => {
         const { name, amount, category } = data
@@ -49,6 +50,13 @@ const EditInput = ({ sector, target, onClose }) => {
             setError(true)
         } else if (sector === 'editIncome'){
             updateIncome(target, data)
+                .then(() => {
+                    onClose()
+                    getUser()
+                })
+                .catch( err => console.log(err))
+        }  else if (sector === 'editExpense'){
+            updateExpense(target, data)
                 .then(() => {
                     onClose()
                     getUser()
@@ -80,8 +88,7 @@ const EditInput = ({ sector, target, onClose }) => {
                 </div>
 
             <div className='col-lg-12 category'>
-                {/* <label>Category</label> */}
-                {sector === 'expense' &&
+                {sector === 'editExpense' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized*</option>
@@ -92,16 +99,6 @@ const EditInput = ({ sector, target, onClose }) => {
                         <option value="food">Food</option>
                         <option value="transportation">Transportation</option>
                         <option value="personal">Personal</option>
-                    </select>
-                }
-                {sector === 'income' &&
-                    <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
-                        <option disabled> Select Category </option>
-                        <option value="uncategorized">Uncategorized</option>
-                        <option value="salary">Salary</option>
-                        <option value="personal sale">Personal sale</option>
-                        <option value="personal work">Personal work</option>
-                        <option value="investment benefits">Investment benefits</option>
                     </select>
                 }
                 {sector === 'editIncome' &&
