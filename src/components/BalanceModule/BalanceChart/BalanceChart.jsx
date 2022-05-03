@@ -8,12 +8,6 @@ class BalanceChart extends React.Component {
     super(props);
 
     this.state = {
-      series: [
-        {
-          name: "Balance",
-          data: []
-        }
-      ],
       options: {
         chart: {
           toolbar: false,
@@ -37,20 +31,22 @@ class BalanceChart extends React.Component {
             show: false,
         },
         xaxis: {
-                type: "datetime",
-                categories: [
-                  this.getUserCreateTime(),
-                  this.getCurrentDate(),
-                ],
-                labels: {
-                    show: false,
-                },
-                axisBorder: {
-                    show: false,
-                },
-                axisTicks: {
-                    show: false,
-                },
+            type: "datetime",
+            categories: [
+/*               "22/APR/22",
+              "03/MAY/22", */
+               dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase(),
+              dayjs(new Date()).format('DD/MMM/YY').toString().toUpperCase(),
+            ],
+            labels: {
+                show: false,
+            },
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
         },
         tooltip: {
           x: {
@@ -63,7 +59,8 @@ class BalanceChart extends React.Component {
   }
   
   getUserCreateTime() {
-    return dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY')
+    return console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY'))
+
   }
 
   getCurrentDate() {
@@ -71,7 +68,7 @@ class BalanceChart extends React.Component {
     return dayjs(date).format('DD/MMM/YY')
   }
 
-  componentDidMount(){
+  /* componentDidMount(){
     console.log('Total Balance ->>',this.props.totalBalance)
     this.setState({
       series: [
@@ -81,16 +78,26 @@ class BalanceChart extends React.Component {
       ]
     })
     console.log(this.state.series);
-  }
+  } */
   
 
   render() {
+    const series = [
+      {
+        name: "Balance",
+        data: [1, this.props?.totalBalance]
+      }
+    ]
+    console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase())
+    console.log("Curr Date",dayjs(new Date()).format('DD/MMM/YY').toString().toUpperCase())
+    console.log(this.props?.totalBalanc);
+
+
     return (
-      
       <div id="chart">
         <ReactApexChart
           options={this.state.options}
-          series={this.state.series}
+          series={series}
           type="area"
           height={'100'}
         />

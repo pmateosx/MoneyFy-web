@@ -15,7 +15,6 @@ const schema = yup.object({
 
 const EditInput = ({ sector, target, onClose }) => {
     const { getUser } = useAuthContext()
-    const [ targetValue, setTargetValue] = useState({})
     const [error, setError] = useState(false)
     const {handleSubmit, register, formState:{ errors }, setValue } = useForm({
         resolver: yupResolver(schema)
@@ -27,6 +26,7 @@ const EditInput = ({ sector, target, onClose }) => {
                 /* setTargetValue(incomeFound) */
                 setValue('name', incomeFound.name)
                 setValue('amount', incomeFound.amount)
+                setValue('category', incomeFound.category)
             })
             .catch( err => console.log(err))
     },[target, setValue])
@@ -48,7 +48,7 @@ const EditInput = ({ sector, target, onClose }) => {
         if( !name || !amount || !category){
             setError(true)
         } else if (sector === 'editIncome'){
-            updateIncome(target, {data})
+            updateIncome(target, data)
                 .then(() => {
                     onClose()
                     getUser()

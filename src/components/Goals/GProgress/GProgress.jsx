@@ -1,12 +1,15 @@
-import GoalProgress from '../../GoalProgress/GoalProgress'
 import GoalProgressChart from '../../GoalProgress/GoalProgressChart/GoalPRogressChart'
+import GoalList from '../GoalList/GoalList'
 import './GProgress.scss'
 
 const GProgress = () => {
     return (
         <div className='GProgress'>
-            <div className="">
-             % graph
+            <div>
+                <GoalProgressChart />
+            </div>
+            <div>
+                <GoalList />
             </div>
         </div>
     )
