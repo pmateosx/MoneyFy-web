@@ -33,10 +33,10 @@ class BalanceChart extends React.Component {
         xaxis: {
             type: "datetime",
             categories: [
-/*               "22/APR/22",
-              "03/MAY/22", */
-               dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase(),
-              dayjs(new Date()).format('DD/MMM/YY').toString().toUpperCase(),
+/*             "22/APR/22",
+              "03/MAY/22",  */
+              dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY'),
+              dayjs().format('DD/MMM/YY'),
             ],
             labels: {
                 show: false,
@@ -58,7 +58,7 @@ class BalanceChart extends React.Component {
     };
   }
   
-  getUserCreateTime() {
+/*   getUserCreateTime() {
     return console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY'))
 
   }
@@ -67,7 +67,7 @@ class BalanceChart extends React.Component {
     const date = new Date();
     return dayjs(date).format('DD/MMM/YY')
   }
-
+ */
   /* componentDidMount(){
     console.log('Total Balance ->>',this.props.totalBalance)
     this.setState({
@@ -85,12 +85,12 @@ class BalanceChart extends React.Component {
     const series = [
       {
         name: "Balance",
-        data: [1, this.props?.totalBalance]
+        data: [1, this.props.totalBalance]
       }
     ]
-    console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase())
+/*     console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase())
     console.log("Curr Date",dayjs(new Date()).format('DD/MMM/YY').toString().toUpperCase())
-    console.log(this.props?.totalBalanc);
+    console.log(this.props?.totalBalance); */
 
 
     return (

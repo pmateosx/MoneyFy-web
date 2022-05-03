@@ -22,10 +22,6 @@ const BalanceModule = () => {
 
     return (
         <div className='BalanceModule'>
-{/*             <div className='balance-title'>
-                <h3>Balance</h3>
-                <span>{total}</span>
-            </div> */}
             <div className='chart-div'>
                 <BalanceChart totalBalance={total} userInfo={user}/>
             </div>

@@ -2,6 +2,9 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import './ChartExpenseIncome.scss'
 
+/* const expensesArr = this.props?.userInfo?.expense.map(expense => expense.amount++)
+const incomeArr = this.props?.userInfo?.income.map(income => income.amount++)
+console.log(incomeArr); */
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
@@ -71,6 +74,7 @@ class ApexChart extends React.Component {
   }
 
   render() {
+    
     return (
       <div id="chart" className="Chart">
         <h2>Your balance! 😎</h2>

@@ -5,9 +5,11 @@ import GoalProgress from '../../components/GoalProgress/GoalProgress'
 import Greetings from '../../components/Greetings/Greetings'
 import IncomeModule from '../../components/IncomeModule/IncomeModule'
 import LasMovementsModule from '../../components/LastMovementsModule/LasMovementsModule'
+import { useAuthContext } from '../../contexts/AuthContext'
 import './Dashboard.scss'
 
 const Dashboard = () => {
+    const { user } = useAuthContext()
     return(
         <div className='container Dashboard'>
             <div className='row'>
@@ -26,7 +28,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className='col-lg-6 module'>
-                    <ApexChart />
+                    <ApexChart userInfo={user}/>
                 </div>
             </div>
             <div className='row'>
