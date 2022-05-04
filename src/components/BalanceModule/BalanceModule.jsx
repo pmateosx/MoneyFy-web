@@ -23,7 +23,7 @@ const BalanceModule = () => {
     return (
         <div className='BalanceModule'>
             <div className='chart-div'>
-                <BalanceChart totalBalance={total} userInfo={user}/>
+            {user && <BalanceChart totalBalance={total} userInfo={user}/>}
             </div>
         </div>
     )

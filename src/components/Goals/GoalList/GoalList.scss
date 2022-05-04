@@ -1,12 +1,31 @@
 .GoalList {
     border-radius: 20px;
     background-color: white;
-    box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05);
+   /*  box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05); */
     padding: 2rem 2rem 2rem 2rem;
     font-size: 1.5rem;
     margin: 1rem;
     width: 35rem;
     height: 40rem;
+
+    .add-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(239, 239, 239);
+        border-radius: 7px;
+        padding: 1.8rem 2rem;
+        border: none;
+        margin: 1rem 0;
+        color: rgb(117, 117, 117);
+        font-size: 2rem;
+        transition: transform .2s;
+    }
+    .add-btn:hover{
+        transform: scale(1.05);
+    }
+
+    
    
     .head {
         display: flex;
@@ -21,6 +40,10 @@
             padding: 0.7rem 2rem;
             border: none;
             color: rgb(117, 117, 117);
+            transition: transform .2s;
+        }
+        #edit-state:hover{
+            transform: scale(1.05);
         }
     }
 
@@ -29,7 +52,6 @@
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        /* border: 1px solid rgb(231, 231, 231); */
         border-radius: 7px;
 
         .edit {

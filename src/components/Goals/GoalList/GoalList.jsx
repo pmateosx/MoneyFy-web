@@ -1,14 +1,22 @@
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../../contexts/AuthContext'
-import { FiStar, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
+import { FiStar, FiEdit, FiTrash, FiEdit3, FiPlus } from "react-icons/fi";
 import { deleteGoal } from '../../../services/GoalService';
 import './GoalList.scss'
+import Modal from '../../Modal/Modal';
+import EditInput from '../../EditInput/EditInput';
+import GoalStepInput from '../GoalStepInput/GoalStepInput';
 
 const GoalList = () => {
     const {user, getUser } = useAuthContext()
     const [editing, setEditing] = useState(false)
     const [ allGoals, setAllGoals] = useState([])
+    const [ showModal, setShowModal ] = useState(false)
+    const [ showCreateModal, setshowCreateModal ] = useState(false)
+    const [ modalTitle, setModalTitle ] = useState()
+    const [ inputCategory, setInputCategory ] = useState()
+    const [ targetId, setTargetId ] = useState()
 
     useEffect(() => {
         const goals = user?.goal
@@ -16,6 +24,17 @@ const GoalList = () => {
         console.log(user)
     }, [user])
 
+    const handleCloseModal = () => {
+        setShowModal(false)
+        setshowCreateModal(false)
+    }
+
+    const handleEdit = (id) => {
+        setShowModal(true)
+        setTargetId(id)
+        setModalTitle('Edit your Goal')
+        setInputCategory('editGoal')
+    }
 
     const getDateFormat = (date) => {
         return dayjs(date).format('DD MMM')
@@ -25,9 +44,12 @@ const GoalList = () => {
         deleteGoal(id)
         getUser()
     }
-
+    
     return (
         <div className='GoalList'>
+            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
+            {showCreateModal && <Modal onClose={handleCloseModal}> <GoalStepInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
+
             <div className='head'>
                 <h3>Your Expenses</h3>
                 <button id='edit-state' onClick={() => setEditing(!editing)}>Edit <FiEdit3/></button>
@@ -43,7 +65,7 @@ const GoalList = () => {
                                     <button className='edit-btn' onClick={() => handleDelete(goal.id)}>
                                         <FiTrash />
                                     </button>
-                                    <button className='delete-btn' onClick={() => handleDelete(goal.id)}>
+                                    <button className='delete-btn' onClick={() => handleEdit(goal.id)}>
                                         <FiEdit />
                                     </button>
                                 </div>
@@ -61,14 +83,15 @@ const GoalList = () => {
                         </div>
                     </div>
                     )
-
                 )
                 :
                 (
                     <h4>You dont have goals yet</h4>
                 )
             }
-                            
+            <div className='add-btn' onClick={() => setshowCreateModal(!showCreateModal)}>
+                <FiPlus />
+            </div>        
             </div>
         </div>
     )

@@ -28,7 +28,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className='col-lg-6 module'>
-                    <ApexChart userInfo={user}/>
+                    {user && <ApexChart userInfo={user}/>}
                 </div>
             </div>
             <div className='row'>

@@ -62,7 +62,7 @@ const Input = ({ sector, onClose }) => {
                     <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {`Name of ${sector}*`} {...register('name')}/>
                 </div>
                 <div className='col-lg-3 amount'>
-                    <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')}/> <span>€</span>
+                    <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} step="0.01"/> <span>€</span>
                 </div>
             </div>
                 <div className='row input-group'>

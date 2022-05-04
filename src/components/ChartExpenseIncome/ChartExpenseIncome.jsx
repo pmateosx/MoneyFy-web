@@ -11,14 +11,6 @@ class ApexChart extends React.Component {
 
     this.state = {
       series: [
-        {
-          name: "Expenses",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-        },
-        {
-          name: "Incomes",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-        }
       ],
       options: {
         chart: {
@@ -26,7 +18,10 @@ class ApexChart extends React.Component {
           height: 350,
           toolbar: {
             show: false
-            }
+            },
+          noData:{
+            text: 'Loading...'
+          }
         },
         plotOptions: {
           bar: {
@@ -65,7 +60,7 @@ class ApexChart extends React.Component {
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands";
+              return val + " €";
             },
           },
         },
@@ -73,8 +68,25 @@ class ApexChart extends React.Component {
     };
   }
 
+  componentDidMount(){
+    const expensesArr = this.props?.userInfo?.expense.map(expense => expense.amount++ )
+    const incomeArr = this.props?.userInfo?.income.map(income => income.amount++ )
+
+    this.setState({
+      series: [
+        {
+          name: "Expenses",
+          data: expensesArr,
+        },
+        {
+          name: "Incomes",
+          data: incomeArr ,
+        }
+      ]
+    })
+  }
+
   render() {
-    
     return (
       <div id="chart" className="Chart">
         <h2>Your balance! 😎</h2>
@@ -88,6 +100,5 @@ class ApexChart extends React.Component {
     );
   }
 }
-
 
 export default ApexChart
