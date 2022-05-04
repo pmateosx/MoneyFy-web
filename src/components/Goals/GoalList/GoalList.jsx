@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../../contexts/AuthContext'
-import { FiShoppingBag, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
+import { FiStar, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
 import { deleteGoal } from '../../../services/GoalService';
 import './GoalList.scss'
 
@@ -43,21 +43,21 @@ const GoalList = () => {
                                     <button className='edit-btn' onClick={() => handleDelete(goal.id)}>
                                         <FiTrash />
                                     </button>
-                                    <button className='delete-btn' onClick={''}>
+                                    <button className='delete-btn' onClick={() => handleDelete(goal.id)}>
                                         <FiEdit />
                                     </button>
                                 </div>
                             </div>
                         }
                         <div className='icon'>
-                            <FiShoppingBag />
+                            <FiStar />
                         </div>
                         <div className='middle-content'>
                             <h4>{goal.name}</h4>
-                            <small>{(goal.category).charAt(0).toUpperCase() + goal.category.slice(1) } | {getDateFormat(goal.createdAt).toUpperCase()}</small>
+                            <small>{getDateFormat(goal?.createdAt).toUpperCase()}</small>
                         </div>
                         <div className='amount'>
-                            <h3>-{goal.amount}€</h3>
+                            <h3>{goal.amount}€</h3>
                         </div>
                     </div>
                     )

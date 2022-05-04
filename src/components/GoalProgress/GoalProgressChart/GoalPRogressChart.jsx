@@ -6,7 +6,6 @@ class GoalProgressChart extends React.Component {
       super(props);
 
       this.state = {
-      
         series: [90],
         options: {
           chart: {
