@@ -57,29 +57,6 @@ class BalanceChart extends React.Component {
       },
     };
   }
-  
-/*   getUserCreateTime() {
-    return console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY'))
-
-  }
-
-  getCurrentDate() {
-    const date = new Date();
-    return dayjs(date).format('DD/MMM/YY')
-  }
- */
-  /* componentDidMount(){
-    console.log('Total Balance ->>',this.props.totalBalance)
-    this.setState({
-      series: [
-        {
-          data: [ 0, this.props?.totalBalance]
-        }
-      ]
-    })
-    console.log(this.state.series);
-  } */
-  
 
   render() {
     const series = [
@@ -88,10 +65,6 @@ class BalanceChart extends React.Component {
         data: [1, this.props.totalBalance]
       }
     ]
-/*     console.log("UserDate",dayjs(this.props.userInfo?.createdAt).format('DD/MMM/YY').toString().toUpperCase())
-    console.log("Curr Date",dayjs(new Date()).format('DD/MMM/YY').toString().toUpperCase())
-    console.log(this.props?.totalBalance); */
-
 
     return (
       <div id="chart">

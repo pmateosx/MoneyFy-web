@@ -1,16 +1,21 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import './ChartExpenseIncome.scss'
-
-/* const expensesArr = this.props?.userInfo?.expense.map(expense => expense.amount++)
-const incomeArr = this.props?.userInfo?.income.map(income => income.amount++)
-console.log(incomeArr); */
+import dayjs from "dayjs"
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       series: [
+        {
+          name: "Expenses",
+          data: this.props?.userInfo?.expense.map(expense => expense.amount++ ),
+        },
+        {
+          name: "Incomes",
+          data: this.props?.userInfo?.income.map(income => income.amount++ ) ,
+        }
       ],
       options: {
         chart: {
@@ -40,6 +45,7 @@ class ApexChart extends React.Component {
         },
         xaxis: {
           categories: [
+            dayjs(this.props.userInfo?.createdAt).format('DD MMM'),
             "Feb",
             "Mar",
             "Apr",
@@ -49,7 +55,20 @@ class ApexChart extends React.Component {
             "Aug",
             "Sep",
             "Oct",
+            "Nov",
+            "Dec",
           ],
+        },
+        yaxis: {
+          show: true,
+          tickAmount: 6,
+          min: 0,
+          max: function(max) { return max },
+          labels: {
+            formatter: function(val) {
+              return val.toFixed(0);
+            }
+          }
         },
         fill: {
           opacity: 1,
@@ -67,7 +86,7 @@ class ApexChart extends React.Component {
       },
     };
   }
-
+/* 
   componentDidMount(){
     const expensesArr = this.props?.userInfo?.expense.map(expense => expense.amount++ )
     const incomeArr = this.props?.userInfo?.income.map(income => income.amount++ )
@@ -84,6 +103,14 @@ class ApexChart extends React.Component {
         }
       ]
     })
+  } */
+
+  componentDidMount(){
+    var dt = new Date();
+    var month = dt.getMonth();
+    var year = dt.getFullYear();
+   const daysInMonth = new Date(year, month, 0).getDate()
+   console.log(daysInMonth);
   }
 
   render() {
@@ -91,8 +118,8 @@ class ApexChart extends React.Component {
       <div id="chart" className="Chart">
         <h2>Your balance! 😎</h2>
         <ReactApexChart
-          options={this.state.options}
-          series={this.state.series}
+          options= {this.state.options}
+          series= {this.state.series}
           type="bar"
           height={300}
         />

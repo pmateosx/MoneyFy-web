@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FiArrowRightCircle, FiArrowLeftCircle } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import './GoalStepInput.scss'
 
 const schema = yup.object({
@@ -21,7 +21,12 @@ const GoalStepInput = ({ onClose, sector, target }) => {
     })
 
     const handleStep = (stepPosition) => {
-
+        console.log(step);
+        if (stepPosition <= 1){
+            setStep(stepPosition +1)
+        } else if (stepPosition === 2) {
+            setStep(stepPosition - 1)
+        }
     }
 
     return (
@@ -29,6 +34,8 @@ const GoalStepInput = ({ onClose, sector, target }) => {
             <h2>Let's create Goal!</h2>
 
             <form className='form-wrapper'>
+            {step <= 1 && 
+            <>
                 <div id='circle'>
                     <h4>1º insert name and total amount</h4>
                 </div>
@@ -37,7 +44,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                         <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {'Name of goal'} {...register('name')}/>
                     </div>
                     <div className='col-lg-3 amount'>
-                        <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')}/> <span>€</span>
+                        <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="goalAmount" placeholder='Amount*' {...register('goalAmount')} step='0.01'/> <span>€</span>
                     </div>
 
                 </div>
@@ -50,21 +57,26 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                             </div>
                         </div>
                     </div>
-
-                <hr />
-                <div className='second-step'>
-                    <h4>2º Enter the amount you want to save</h4>
-                    <p>Your total savings balance is XXXX € How much do you want to spend per month to achieve your goal?</p>
-                    <div className='col-lg-3 goal-amount-div'>
-                        <input className={`${errors.amount?.message ? 'invalid' : ''} goal-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')}/> <span>€ x mounth</span>
+            </>
+            }
+                {step === 2 && 
+                    <div className='second-step'>
+                        <h4>2º Enter the amount you want to save</h4>
+                        <p>Your total savings balance is XXXX € How much do you want to spend per month to achieve your goal?</p>
+                        <div className='col-lg-3 goal-amount-div'>
+                            <input className={`${errors.amount?.message ? 'invalid' : ''} goal-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} step='0.01' /> <span>€ x mounth</span>
+                        </div>
                     </div>
-                </div>
+                }
             </form>
 
             <br />
-            <div className='btn-group'>
-                <div onClick={handleStep}> <FiArrowLeftCircle /> </div>
-                <div onClick={handleStep}> <FiArrowRightCircle/> </div>
+            <div className='container-btn'>
+                <div className='btn-group'>
+                    {step > 1 && <div onClick={()=> handleStep(step)}> <FiChevronLeft /> </div>} 
+                    {step <= 1 && <div onClick={()=> handleStep(step)}> <FiChevronRight /> </div> }
+                    {step > 1 && <div onClick={()=> handleStep(step)}> Submit </div> }
+                </div>
             </div>
         </div>
     )
