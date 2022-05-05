@@ -2,10 +2,10 @@ import { FiShoppingBag, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
 import dayjs from "dayjs"
-import './ExpenseDetail.scss'
 import Modal from "../Modal/Modal";
 import EditInput from "../EditInput/EditInput";
 import { deleteExpense } from "../../services/ExpenseService";
+import './ExpenseDetail.scss'
 
 const ExpenseDetails = () => {
     const {user, getUser } = useAuthContext()

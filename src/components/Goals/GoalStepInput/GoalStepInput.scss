@@ -3,12 +3,33 @@
     flex-direction: column;
     margin-top: 1rem;
     width: 100%;
+    min-height: 29rem;
+    font-weight: 100;
+
+    h4{
+        margin: 1rem 0;
+        font-weight: 500;
+    }
     
     .main-container{
         display: flex;
         align-items: center;
+
+        h4{
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
         label{
             margin-left: 2rem;
+        }
+    }
+    .error-first-step{
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        small {
+            margin: 1rem 0;
         }
     }
     .input-group {
@@ -106,18 +127,12 @@
         }
     }
 
-    .invalid {
-        color: red;
-        border-color: red;
-    }
-    .invalid-2 {
-        color: red;
-    }
     .second-step{
         width: 100%;
 
             h4{
                 margin: 1rem 0;
+                font-weight: 500;
             }
             p{
                 margin-bottom: 2rem;
@@ -127,11 +142,11 @@
     .goal-amount-div{
         display: flex;
         align-items: center;
-        width: 90%;
+        width: 100%;
         padding: 0;
 
         .goal-amount{
-            width: 100%;
+            width: 40%;
             height: 40px;
             border-radius: 10px;
             border: 1px solid rgb(228, 228, 228);
@@ -148,10 +163,11 @@
     }
 
 }
-.container-btn{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+
+.container-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: -42rem;
     width: 85%;
 
     .btn-group {
@@ -173,7 +189,27 @@
         div:hover{
             transform: scale(1.05);
         }
+        button{
+            border: none;
+            font-size: 1.7rem;
+            color: rgb(140, 140, 140);
+            margin-left: 0.7rem;
+            background-color: rgb(229, 229, 229);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+        }
+        button:hover{
+            transform: scale(1.05);
+        }
     }
     
 }
+}
+
+.invalid {
+    color: red;
+    border:1px solid red;
+}
+.invalid-2 {
+    color: red;
 }

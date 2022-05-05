@@ -79,6 +79,7 @@ const GoalList = () => {
                             <small>{getDateFormat(goal?.createdAt).toUpperCase()}</small>
                         </div>
                         <div className='amount'>
+                            <h2>{goal.goalAmount}€</h2>
                             <h3>{goal.amount}€</h3>
                         </div>
                     </div>
