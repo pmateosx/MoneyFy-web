@@ -22,7 +22,6 @@ const EditGoalInput = ({ sector, target, onClose }) => {
     })
 
     const handleStep = (stepPosition) => {
-        console.log(step);
         if (stepPosition <= 1){
             setStep(stepPosition +1)
         } else if (stepPosition === 2) {

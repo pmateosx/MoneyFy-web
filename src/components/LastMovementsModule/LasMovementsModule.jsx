@@ -34,7 +34,9 @@ const LasMovementsModule = ( {type} ) => {
                     <div className="text">
                         <h4>{mov.name}</h4>
                         <small>{(mov.category).charAt(0).toUpperCase() + mov.category.slice(1)}</small>
-                        <h3 id="amount">-{mov.amount}€</h3>
+                        <h3 id="amount">-{
+                            (mov.amount).toFixed(2)
+                            }€</h3>
                     </div>
                 </li>)
                 })

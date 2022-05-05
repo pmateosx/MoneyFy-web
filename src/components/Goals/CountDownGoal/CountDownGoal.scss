@@ -12,6 +12,19 @@
     padding: 2rem;
     height: 11rem;
 
+    .counter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+        }
+        p{
+            margin: 0;
+        }
+    }
+
     .icon {
         background-color: rgb(221, 221, 221);
         border-radius: 10px;

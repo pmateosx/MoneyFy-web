@@ -22,7 +22,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
     })
 
     const handleStep = (stepPosition) => {
-        console.log(step);
+
         if (stepPosition <= 1){
             setStep(stepPosition +1)
         } else if (stepPosition === 2) {
@@ -33,7 +33,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
     const onSubmit = (data) => {
         const { id } = user
         const { name, amount, main, goalAmount } = data
-        console.log(data);
+
 
         if (!name || !amount || !main || !goalAmount) {
             setError(true)
@@ -49,10 +49,6 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                 })
         }
     }
-
-
-    console.log('error ->>', error);
-    console.log('errors ->>', errors);
     return (
         <div className='GoalStepInput'>
             <h2>Let's create Goal!</h2>

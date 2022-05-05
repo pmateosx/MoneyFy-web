@@ -1,9 +1,11 @@
 import BalanceModuleGoals from '../../components/Goals/BalanceModuleGoals/BalanceModuleGoals'
 import CountDownGoal from '../../components/Goals/CountDownGoal/CountDownGoal'
 import GProgress from '../../components/Goals/GProgress/GProgress'
+import { useAuthContext } from '../../contexts/AuthContext'
 import './Goal.scss'
 
 const Goal = () => {
+    const { user } = useAuthContext()
     return(
         <div className='Goal container'>
             <div className='row'>
@@ -11,7 +13,7 @@ const Goal = () => {
                     <BalanceModuleGoals />
                 </div>
                 <div className='col-lg-8 module'>
-                <CountDownGoal />
+                {user  && <CountDownGoal /> }
                 </div>
             </div>
             <div className='row'>

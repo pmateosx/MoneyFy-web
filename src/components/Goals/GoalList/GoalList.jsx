@@ -21,7 +21,6 @@ const GoalList = () => {
     useEffect(() => {
         const goals = user?.goal
         setAllGoals(goals)
-        console.log(user)
     }, [user])
 
     const handleCloseModal = () => {
