@@ -90,10 +90,10 @@ const GoalList = () => {
                     <h4>You dont have goals yet</h4>
                 )
             }
+            </div>
             <div className='add-btn' onClick={() => setshowCreateModal(!showCreateModal)}>
                 <FiPlus />
             </div>        
-            </div>
         </div>
     )
 }
