@@ -5,8 +5,8 @@ import { FiStar, FiEdit, FiTrash, FiEdit3, FiPlus } from "react-icons/fi";
 import { deleteGoal } from '../../../services/GoalService';
 import './GoalList.scss'
 import Modal from '../../Modal/Modal';
-import EditInput from '../../EditInput/EditInput';
 import GoalStepInput from '../GoalStepInput/GoalStepInput';
+import EditGoalInput from '../EditGoalInput/EditGoalInput';
 
 const GoalList = () => {
     const {user, getUser } = useAuthContext()
@@ -47,7 +47,7 @@ const GoalList = () => {
     
     return (
         <div className='GoalList'>
-            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
+            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditGoalInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
             {showCreateModal && <Modal onClose={handleCloseModal}> <GoalStepInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
 
             <div className='head'>

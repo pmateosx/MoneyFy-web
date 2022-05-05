@@ -1,11 +1,11 @@
-import { useAuthContext } from '../../../contexts/AuthContext'
-import { useForm } from 'react-hook-form'
-import { useState } from 'react'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import './GoalStepInput.scss'
-import {createGoal} from '../../../services/GoalService.js'
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { getGoal, updateGoal } from "../../../services/GoalService";
+import './EditGoalInput.scss'
 
 const schema = yup.object({
     name: yup.string().required('Name is required'),
@@ -13,11 +13,11 @@ const schema = yup.object({
     goalAmount: yup.number().typeError('You must specify a number').required('Goal amount is required'),
   }).required();
 
-const GoalStepInput = ({ onClose, sector, target }) => {
-    const { user, getUser } = useAuthContext()
+const EditGoalInput = ({ sector, target, onClose }) => {
+    const { getUser } = useAuthContext()
     const [ error, setError ] = useState(false)
     const [step, setStep] = useState(1)
-    const { handleSubmit, register, formState: { errors } } = useForm({
+    const { handleSubmit, register, formState: { errors },  setValue } = useForm({
         resolver: yupResolver(schema)
     })
 
@@ -30,33 +30,34 @@ const GoalStepInput = ({ onClose, sector, target }) => {
         }
     }
 
+    useEffect(() => {
+        getGoal(target)
+            .then((goalFound) => {
+                setValue('name', goalFound.name)
+                setValue('amount', goalFound.amount)
+                setValue('main', goalFound.main)
+                setValue('goalAmount', goalFound.goalAmount)
+            })
+            .catch( err => console.log(err))
+    },[target, setValue])
+
     const onSubmit = (data) => {
-        const { id } = user
         const { name, amount, main, goalAmount } = data
-        console.log(data);
 
         if (!name || !amount || !main || !goalAmount) {
             setError(true)
-            setStep(1)
         } else {
-            createGoal({...data, user: id})
-            .then(goalCreated => {
+            updateGoal(target, data)
+                .then(() => {
                     onClose()
                     getUser()
                 })
-                .catch(err => {
-                    setError(err?.response?.data?.message)
-                })
+                .catch( err => console.log(err))
         }
     }
 
-
-    console.log('error ->>', error);
-    console.log('errors ->>', errors);
     return (
-        <div className='GoalStepInput'>
-            <h2>Let's create Goal!</h2>
-
+        <div className='GoalEdit'>
             <form className='form-wrapper'onSubmit={handleSubmit(onSubmit)}>
             {step <= 1 && 
             <>
@@ -84,6 +85,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                                 <label><input type="radio" {...register('main')} value="true" /> Yes </label>
                                 <label><input type="radio" {...register('main')} value="false" /> No </label>
                             </div>
+                            {error.main?.message && <small style={{color: "red"}}>{error.main?.message}</small>}
                         </div>
                     </div>
             </>
@@ -116,4 +118,4 @@ const GoalStepInput = ({ onClose, sector, target }) => {
     )
 }
 
-export default GoalStepInput
+export default EditGoalInput

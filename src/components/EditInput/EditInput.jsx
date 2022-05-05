@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { getExpense, updateExpense } from "../../services/ExpenseService";
 
-
 const schema = yup.object({
     name: yup.string().required('Name is required'),
     amount: yup.number().typeError('You must specify a number').required('Amount is required'),
@@ -64,9 +63,6 @@ const EditInput = ({ sector, target, onClose }) => {
                 .catch( err => console.log(err))
         }
     }
-
-    console.log('Target Id ->>', target);
-    console.log('Sector ->>', sector);
 
     return (
         <form className='Input' onSubmit={handleSubmit(onSubmit)}>
