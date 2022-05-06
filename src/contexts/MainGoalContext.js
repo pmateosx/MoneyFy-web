@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getGoal, updateGoal } from "../services/GoalService";
+import { getGoal, updateGoal, updateMainGoal } from "../services/GoalService";
 import { useAuthContext } from "./AuthContext";
 
 const MainGoalContext = createContext()
@@ -8,34 +8,29 @@ export const useMainGoalContext = () => useContext(MainGoalContext)
 
 export const MainGoalContextProvider = ({ children }) => {
     const { user } = useAuthContext()
-    const [currentGoal, setCurrentGoal] = useState(user?.goal[0])
+    const [currentGoal, setCurrentGoal] = useState()
     
 
     const getCurrentGoal = (id) => {
-        getGoal(id)
-            .then((goal) => {
-                setCurrentGoal(goal)
-                updateGoal(goal.id, {...goal, main: true})
-                /* handleMainGoal(goal.id) */
+        const actualGoal = user?.goal.find((goal)=> goal.id === id)
+        const prevGoal = currentGoal;
+        setCurrentGoal(actualGoal)
+        updateMainGoal(id)
+            .then((res)=> {
+                if(res.status === 204) {
+                    setCurrentGoal(prevGoal);
+                }
             })
+            .catch(()=> setCurrentGoal(prevGoal))
+        // en el catch ---> setCurrentGoal(prevGoal)
     }
-/*     const handleMainGoal = (id) =>  {
-        const allGoals = user.goal
-        let result = allGoals.filter((item, index) => item.main
-        )
-        if(result.length >= 1){  
-            updateGoal(id, {...result[0], main: false})
-            result.pop()
-        }
-    console.log(result);
-    return result
-    } */
 
     useEffect(()=> {
         if (user?.goal.length > 0 && !currentGoal) {
-            setCurrentGoal(user?.goal[0])
+            const goalFiltered = user?.goal?.find(goal => goal.main)
+            setCurrentGoal(goalFiltered || user?.goal[0])
         }
-    },[currentGoal, user?.goal])
+    }, [currentGoal, user?.goal])
 
     const value = {
           currentGoal,

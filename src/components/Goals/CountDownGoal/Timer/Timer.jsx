@@ -6,6 +6,7 @@ const Timer = ({dateToGoal}) => {
     const finishDate =  dayjs(meta).valueOf()
     const currentDate = new Date().getTime()
     const [ resultDate, setResultDate ] = useState()
+    const [ finish, setFinish ] = useState()
     const [ dif , setDif ] = useState()
 
     const year = Math.floor((dif / (1000 * 60 * 60 * 24 * 30 * 12))) || '00'
@@ -14,10 +15,8 @@ const Timer = ({dateToGoal}) => {
     const hours = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) || '00'
     const seconds = Math.floor((dif % (1000 * 60)) / 1000) || '00'
     const minutes = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60)) || '00'
-
-    console.log('dif', dif);
-    console.log('dateToGoal', dateToGoal);
-    console.log('currentDate', currentDate);
+    
+    
 
     useEffect(()=> {
         setMeta(dateToGoal)
@@ -29,6 +28,7 @@ const Timer = ({dateToGoal}) => {
             + minutes + "m " + seconds + "s ")
         }
         console.log('hi');
+
         return () => clearInterval(interval)
         
     },[currentDate, days, finishDate, hours, minutes, seconds, dateToGoal , month, year])
@@ -36,6 +36,7 @@ const Timer = ({dateToGoal}) => {
     return(
         <div>
             {resultDate && <h3>Loading...</h3> && <p id="demo">{resultDate}</p>}
+            {finish && <p>{finish}</p>}
         </div>
     )
 }

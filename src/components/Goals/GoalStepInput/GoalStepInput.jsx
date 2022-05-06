@@ -39,6 +39,9 @@ const GoalStepInput = ({ onClose, sector, target }) => {
             setError(true)
             setStep(1)
         } else {
+            if(!user.goal.length) {
+                data.main = true;
+            }
             createGoal({...data, user: id})
             .then(goalCreated => {
                     onClose()
