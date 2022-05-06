@@ -43,7 +43,6 @@ const EditInput = ({ sector, target, onClose }) => {
 
     const onSubmit = (data) => {
         const { name, amount, category } = data
-        console.log('DATA ->>', data);
 
         if( !name || !amount || !category){
             setError(true)

@@ -32,10 +32,10 @@ const GoalStepInput = ({ onClose, sector, target }) => {
 
     const onSubmit = (data) => {
         const { id } = user
-        const { name, amount, main, goalAmount } = data
+        const { name, amount, goalAmount } = data
 
 
-        if (!name || !amount || !main || !goalAmount) {
+        if (!name || !amount || !goalAmount) {
             setError(true)
             setStep(1)
         } else {
@@ -73,7 +73,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                         {errors.name?.message && <small style={{color: "red"}}>{errors.name?.message}</small>}
                         {errors.goalAmount?.message && <small style={{color: 'red', marginRight: '5rem'}}>{errors.goalAmount?.message}</small>}
                 </div>
-                    <div className='row'>
+{/*                     <div className='row'>
                         <div className='col-lg-12 main-container'>
                             <h4>Do you want this to be your main goal?</h4>
                             <div className='main-radio'>
@@ -81,7 +81,7 @@ const GoalStepInput = ({ onClose, sector, target }) => {
                                 <label><input type="radio" {...register('main')} value="false" /> No </label>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
             </>
             }
                 {step === 2 && 

@@ -5,6 +5,7 @@ import './GProgress.scss'
 
 const GProgress = () => {
     const { user } = useAuthContext()
+
     return (
         <div className='GProgress'>
             <div>

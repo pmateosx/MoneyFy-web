@@ -41,9 +41,9 @@ const EditGoalInput = ({ sector, target, onClose }) => {
     },[target, setValue])
 
     const onSubmit = (data) => {
-        const { name, amount, main, goalAmount } = data
+        const { name, amount, goalAmount } = data
 
-        if (!name || !amount || !main || !goalAmount) {
+        if (!name || !amount || !goalAmount) {
             setError(true)
         } else {
             updateGoal(target, data)
@@ -77,7 +77,7 @@ const EditGoalInput = ({ sector, target, onClose }) => {
                         {errors.name?.message && <small style={{color: "red"}}>{errors.name?.message}</small>}
                         {errors.goalAmount?.message && <small style={{color: 'red', marginRight: '5rem'}}>{errors.goalAmount?.message}</small>}
                 </div>
-                    <div className='row'>
+{/*                     <div className='row'>
                         <div className='col-lg-12 main-container'>
                             <h4>Do you want this to be your main goal?</h4>
                             <div className='main-radio'>
@@ -86,7 +86,7 @@ const EditGoalInput = ({ sector, target, onClose }) => {
                             </div>
                             {error.main?.message && <small style={{color: "red"}}>{error.main?.message}</small>}
                         </div>
-                    </div>
+                    </div> */}
             </>
             }
                 {step === 2 && 

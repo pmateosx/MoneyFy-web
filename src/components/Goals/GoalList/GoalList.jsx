@@ -2,11 +2,13 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../../contexts/AuthContext'
 import { FiStar, FiEdit, FiTrash, FiEdit3, FiPlus } from "react-icons/fi";
+import { AiFillStar } from "react-icons/ai";
 import { deleteGoal } from '../../../services/GoalService';
 import './GoalList.scss'
 import Modal from '../../Modal/Modal';
 import GoalStepInput from '../GoalStepInput/GoalStepInput';
 import EditGoalInput from '../EditGoalInput/EditGoalInput';
+import { useMainGoalContext } from '../../../contexts/MainGoalContext';
 
 const GoalList = () => {
     const {user, getUser } = useAuthContext()
@@ -17,6 +19,10 @@ const GoalList = () => {
     const [ modalTitle, setModalTitle ] = useState()
     const [ inputCategory, setInputCategory ] = useState()
     const [ targetId, setTargetId ] = useState()
+
+    const { currentGoal, getCurrentGoal } = useMainGoalContext()
+
+    console.log(currentGoal);
 
     useEffect(() => {
         const goals = user?.goal
@@ -70,8 +76,8 @@ const GoalList = () => {
                                 </div>
                             </div>
                         }
-                        <div className='icon'>
-                            <FiStar />
+                        <div className='icon' onClick={() => getCurrentGoal(goal?.id)}>
+                            {currentGoal?.id === goal?.id ? <AiFillStar/> : <FiStar />}
                         </div>
                         <div className='middle-content'>
                             <h4>{goal.name}</h4>

@@ -5,12 +5,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/AuthContext';
 import App from './App';
 import './index.scss';
+import { MainGoalContextProvider } from './contexts/MainGoalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
-      <App />
+      <MainGoalContextProvider>
+        <App />
+      </MainGoalContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
 );

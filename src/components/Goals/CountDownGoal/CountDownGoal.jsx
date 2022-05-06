@@ -6,20 +6,22 @@ import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import * as duration from 'dayjs/plugin/duration';
 import Timer from './Timer/Timer'
+import { useMainGoalContext } from '../../../contexts/MainGoalContext'
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
 const CountDownGoal = () => {
     const { user } = useAuthContext()
+    const { currentGoal }= useMainGoalContext
     const [ timeToGoal, setTimeToGoal] = useState(0)
     console.log(user);
 
     useEffect(()=> {
-        const amount = user?.goal[0].amount
-        const goalAmount = user?.goal[0].goalAmount
+        const amount = currentGoal?.amount
+        const goalAmount = currentGoal?.goalAmount
         setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true));
-    },[user?.goal]) 
+    },[currentGoal]) 
 
     return(
         <div className='CountDownGoal'>
