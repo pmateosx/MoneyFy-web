@@ -18,7 +18,7 @@ const ExpensesModule = () => {
         <div className='ExpensesModule'>
             <h3>Expenses</h3>
             <div className='total'>
-                <span className='total-number'> {total > 0 ? '-' : ''}{total}</span>
+                <span className='total-number'> {total > 0 ? '-' : ''}{total?.toFixed(2)}</span>
                 <span> €</span>
             </div>
         </div>

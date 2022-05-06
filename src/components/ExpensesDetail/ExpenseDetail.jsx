@@ -74,7 +74,7 @@ const ExpenseDetails = () => {
                             <small>{(expense.category).charAt(0).toUpperCase() + expense.category.slice(1) } | {getDateFormat(expense.createdAt).toUpperCase()}</small>
                         </div>
                         <div className='amount'>
-                            <h3>-{expense.amount}€</h3>
+                            <h3>-{expense.amount.toFixed(2)}€</h3>
                         </div>
                     </div>
                     )

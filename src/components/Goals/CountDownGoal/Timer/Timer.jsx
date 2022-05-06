@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../../../../contexts/AuthContext";
 
 const Timer = () => {
+    const { user } = useAuthContext()
     const finishDate =  new Date("Jan 5, 2024 15:37:25").getTime()
     const currentDate = new Date().getTime()
     const [ resultDate, setResultDate ] = useState()
@@ -14,18 +16,18 @@ const Timer = () => {
     useEffect(()=> {
         const interval = setInterval(() =>{
             setDif( finishDate - currentDate )
+        }, 1000)
+        if (days){
             setResultDate(days + "d " + hours + "h "
             + minutes + "m " + seconds + "s ")
-        }, 1000)
-        
-        return () => {
-            clearInterval(interval)
         }
+        return () => clearInterval(interval)
+        
     },[currentDate, days, finishDate, hours, minutes, seconds])
 
     return(
         <div>
-            <p id="demo">{resultDate}</p>
+            {resultDate && <h3>Loading...</h3> && <p id="demo">{resultDate}</p>}
         </div>
     )
 }

@@ -28,9 +28,9 @@ const CountDownGoal = () => {
             </div>
             <div className='content'>
                 <h4>Time to compete goal</h4>
-                {user.goal && <div className='counter'>
+                {timeToGoal && <div className='counter'>
                     <h3>{<Timer />}</h3>
-                    <h3>  ({timeToGoal})</h3>
+                    {/* <h3>  ({timeToGoal})</h3> */}
                 </div>}
             </div>
         </div>
