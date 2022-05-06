@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { getGoal, updateGoal } from "../../../services/GoalService";
 import './EditGoalInput.scss'
+import { useMainGoalContext } from "../../../contexts/MainGoalContext";
 
 const schema = yup.object({
     name: yup.string().required('Name is required'),
@@ -17,6 +18,7 @@ const EditGoalInput = ({ sector, target, onClose }) => {
     const { getUser } = useAuthContext()
     const [ error, setError ] = useState(false)
     const [step, setStep] = useState(1)
+    const { getCurrentGoal } = useMainGoalContext()
     const { handleSubmit, register, formState: { errors },  setValue } = useForm({
         resolver: yupResolver(schema)
     })
@@ -50,6 +52,7 @@ const EditGoalInput = ({ sector, target, onClose }) => {
                 .then(() => {
                     onClose()
                     getUser()
+                    getCurrentGoal(target)
                 })
                 .catch( err => console.log(err))
         }

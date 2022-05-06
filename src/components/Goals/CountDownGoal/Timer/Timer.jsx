@@ -1,29 +1,37 @@
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { useAuthContext } from "../../../../contexts/AuthContext";
 
-const Timer = () => {
-    const { user } = useAuthContext()
-    const finishDate =  new Date("Jan 5, 2024 15:37:25").getTime()
+const Timer = ({dateToGoal}) => {
+    const [ meta, setMeta ] = useState()
+    const finishDate =  dayjs(meta).valueOf()
     const currentDate = new Date().getTime()
     const [ resultDate, setResultDate ] = useState()
     const [ dif , setDif ] = useState()
-   
-    const days = Math.floor(dif / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const seconds = Math.floor((dif % (1000 * 60)) / 1000);
-    const minutes = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
-    
+
+    const year = Math.floor((dif / (1000 * 60 * 60 * 24 * 30 * 12))) || '00'
+    const month = Math.floor((dif % (1000 * 60 * 60 * 24 * 30 * 12) / (1000 * 60 * 60 * 24 * 30))) || '00'
+    const days = Math.floor((dif % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)) || '00'
+    const hours = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) || '00'
+    const seconds = Math.floor((dif % (1000 * 60)) / 1000) || '00'
+    const minutes = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60)) || '00'
+
+    console.log('dif', dif);
+    console.log('dateToGoal', dateToGoal);
+    console.log('currentDate', currentDate);
+
     useEffect(()=> {
+        setMeta(dateToGoal)
         const interval = setInterval(() =>{
             setDif( finishDate - currentDate )
         }, 1000)
-        if (days){
-            setResultDate(days + "d " + hours + "h "
+        if (days) {
+            setResultDate(year + "Y "+ month + "M " + days + "d " + hours + "h "
             + minutes + "m " + seconds + "s ")
         }
+        console.log('hi');
         return () => clearInterval(interval)
         
-    },[currentDate, days, finishDate, hours, minutes, seconds])
+    },[currentDate, days, finishDate, hours, minutes, seconds, dateToGoal , month, year])
 
     return(
         <div>

@@ -13,16 +13,22 @@ dayjs.extend(relativeTime);
 
 const CountDownGoal = () => {
     const { user } = useAuthContext()
-    const { currentGoal }= useMainGoalContext
+    const { currentGoal }= useMainGoalContext()
     const [ timeToGoal, setTimeToGoal] = useState(0)
     console.log(user);
 
     useEffect(()=> {
         const amount = currentGoal?.amount
         const goalAmount = currentGoal?.goalAmount
-        setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true));
-    },[currentGoal]) 
+        const monthsToGoal = goalAmount / amount
+        setTimeToGoal(dayjs().add(monthsToGoal, 'M').format('MMM D, YYYY h:mm:ss'))
 
+        console.log(timeToGoal);
+        console.log('month to goal', monthsToGoal);
+        
+    },[timeToGoal, currentGoal?.amount, currentGoal?.goalAmount]) 
+
+    /* setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true)); */
     return(
         <div className='CountDownGoal'>
             <div className='icon'>
@@ -31,8 +37,8 @@ const CountDownGoal = () => {
             <div className='content'>
                 <h4>Time to compete goal</h4>
                 {timeToGoal && <div className='counter'>
-                    <h3>{<Timer />}</h3>
-                    {/* <h3>  ({timeToGoal})</h3> */}
+                    <h3>{<Timer dateToGoal={timeToGoal} />}</h3>
+                   {/*  <p> ({dayjs.duration((currentGoal?.goalAmount / currentGoal?.amount), 'M').humanize(true)})</p> */}
                 </div>}
             </div>
         </div>
