@@ -10,6 +10,7 @@ import './Dashboard.scss'
 
 const Dashboard = () => {
     const { user } = useAuthContext()
+    
     return(
         <div className='container Dashboard'>
             <div className='row'>
@@ -33,7 +34,7 @@ const Dashboard = () => {
             </div>
             <div className='row'>
                 <div className='col-lg-7 module'>
-                    <GoalProgress/>
+                    <GoalProgress />
                 </div>
                 <div className='col-lg-4 module'>
                     <LasMovementsModule type={'expense'}/>

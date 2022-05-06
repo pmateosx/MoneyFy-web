@@ -15,18 +15,14 @@ const CountDownGoal = () => {
     const { user } = useAuthContext()
     const { currentGoal }= useMainGoalContext()
     const [ timeToGoal, setTimeToGoal] = useState(0)
-    console.log(user);
-
+    
     useEffect(()=> {
         const amount = currentGoal?.amount
         const goalAmount = currentGoal?.goalAmount
         const monthsToGoal = goalAmount / amount
         setTimeToGoal(dayjs().add(monthsToGoal, 'M').format('MMM D, YYYY h:mm:ss'))
-
-        console.log(timeToGoal);
-        console.log('month to goal', monthsToGoal);
         
-    },[timeToGoal, currentGoal?.amount, currentGoal?.goalAmount]) 
+    },[timeToGoal, currentGoal?.amount, currentGoal?.goalAmount, currentGoal]) 
 
     /* setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true)); */
     return(

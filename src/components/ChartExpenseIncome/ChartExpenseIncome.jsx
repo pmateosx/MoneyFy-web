@@ -2,6 +2,8 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import './ChartExpenseIncome.scss'
 import dayjs from "dayjs"
+
+
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +47,7 @@ class ApexChart extends React.Component {
         },
         xaxis: {
           categories: [
-            dayjs(this.props.userInfo?.createdAt).format('DD MMM'),
+            dayjs(this.props.userInfo?.createdAt).format('MMM'),
             "Feb",
             "Mar",
             "Apr",
@@ -86,34 +88,9 @@ class ApexChart extends React.Component {
       },
     };
   }
-/* 
-  componentDidMount(){
-    const expensesArr = this.props?.userInfo?.expense.map(expense => expense.amount++ )
-    const incomeArr = this.props?.userInfo?.income.map(income => income.amount++ )
-
-    this.setState({
-      series: [
-        {
-          name: "Expenses",
-          data: expensesArr,
-        },
-        {
-          name: "Incomes",
-          data: incomeArr ,
-        }
-      ]
-    })
-  } */
-/* 
-  componentDidMount(){
-    var dt = new Date();
-    var month = dt.getMonth();
-    var year = dt.getFullYear();
-   const daysInMonth = new Date(year, month, 0).getDate()
-   console.log(daysInMonth);
-  } */
-
   render() {
+    console.log(dayjs(this.props.userInfo?.createdAt).diff(dayjs(), 'M'));
+    console.log('expense amount', this.props?.userInfo?.expense.map(expense => expense.amount++ ));
     return (
       <div id="chart" className="Chart">
         <h2>Your balance! 😎</h2>

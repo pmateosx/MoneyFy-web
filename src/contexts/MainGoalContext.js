@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getGoal, updateGoal, updateMainGoal } from "../services/GoalService";
+import { updateMainGoal } from "../services/GoalService";
 import { useAuthContext } from "./AuthContext";
 
 const MainGoalContext = createContext()
@@ -22,7 +22,6 @@ export const MainGoalContextProvider = ({ children }) => {
                 }
             })
             .catch(()=> setCurrentGoal(prevGoal))
-        // en el catch ---> setCurrentGoal(prevGoal)
     }
 
     useEffect(()=> {

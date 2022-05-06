@@ -1,10 +1,13 @@
 import GoalProgressChart from './GoalProgressChart/GoalPRogressChart'
 import './GoalProgress.scss'
+import { useMainGoalContext } from '../../contexts/MainGoalContext'
 
 const GoalProgress = () => {
+    const { currentGoal } = useMainGoalContext()
+
     return(
         <div className='GoalProgress'>
-            <GoalProgressChart/>
+            {currentGoal && <GoalProgressChart currentMainGoal={currentGoal}/>}
         </div>
     )
 }

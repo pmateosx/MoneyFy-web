@@ -22,8 +22,6 @@ const GoalList = () => {
 
     const { currentGoal, getCurrentGoal } = useMainGoalContext()
 
-    console.log(currentGoal);
-
     useEffect(() => {
         const goals = user?.goal
         setAllGoals(goals)
