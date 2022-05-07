@@ -17,10 +17,11 @@ const CountDownGoal = () => {
     useEffect(()=> {
         const amount = currentGoal?.amount
         const goalAmount = currentGoal?.goalAmount
-        const monthsToGoal = goalAmount / amount
-        setTimeToGoal(dayjs().add(monthsToGoal, 'M').format('s'))
+        const goalCreated = dayjs().diff(dayjs(currentGoal?.createdAt), 'month')
         
-        setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true));
+       /*  setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true)); */
+        setTimeToGoal(dayjs.duration(((goalAmount / amount) - (goalCreated)), 'M').humanize(true))
+        console.log(timeToGoal);
         
     },[timeToGoal, currentGoal?.amount, currentGoal?.goalAmount, currentGoal]) 
 
