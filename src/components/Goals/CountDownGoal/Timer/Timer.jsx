@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { useMainGoalContext } from "../../../../contexts/MainGoalContext";
 
 const Timer = ({dateToGoal}) => {
     const [ meta, setMeta ] = useState()
@@ -8,7 +7,7 @@ const Timer = ({dateToGoal}) => {
     const currentDate = new Date().getTime()
     const [ resultDate, setResultDate ] = useState()
     const [ dif , setDif ] = useState()
-    const [ finish, setFinish] = useState('')
+    const [ finish, setFinish] = useState()
 
     const year = Math.floor((dif / (1000 * 60 * 60 * 24 * 30 * 12))) || '00'
     const month = Math.floor((dif % (1000 * 60 * 60 * 24 * 30 * 12) / (1000 * 60 * 60 * 24 * 30))) || '00'
@@ -41,8 +40,7 @@ const Timer = ({dateToGoal}) => {
 
     return(
         <div>
-            {resultDate && <h3>Loading...</h3> && <p id="demo">{resultDate}</p>}
-            {finish && <p>{finish}</p>}
+            {finish ? <p>{finish}</p> : <p id="demo">{resultDate}</p>}
         </div>
     )
 }

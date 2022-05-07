@@ -37,6 +37,7 @@ const GoalList = () => {
         setTargetId(id)
         setModalTitle('Edit your Goal')
         setInputCategory('editGoal')
+        setEditing(false)
     }
 
     const getDateFormat = (date) => {
@@ -46,6 +47,7 @@ const GoalList = () => {
     const handleDelete = (id) => {
         deleteGoal(id)
         getUser()
+        setEditing(false)
     }
     
     return (

@@ -7,7 +7,7 @@ import {
     FiThumbsUp,
     FiBarChart,
     FiUser,
-    FiUsers,
+/*     FiUsers, */
     FiLogOut
 } from "react-icons/fi";
 
@@ -43,14 +43,14 @@ const sidebarNavItems = [
         section: 'goals',
         sectionNumber: 0
     },
-    {
+/*     {
         display: 'Commons',
         title: 'SHARED',
         icon: <FiUsers />,
         to: '/commons',
         section: 'commons',
         sectionNumber: 1
-    },
+    }, */
     {
         display: 'Profile',
         title: 'MY ACOUNT',
@@ -68,7 +68,7 @@ const Sidebar = () => {
     const indicatorRef = useRef();
     const location = useLocation();
 
-    const offsiteIndicator = 45;
+    const offsiteIndicator = 23;
     const sidebarIndicatorHeight = activeIndex * stepHeight + (sidebarNavItems[activeIndex].sectionNumber * offsiteIndicator);
 
     useEffect(() => {

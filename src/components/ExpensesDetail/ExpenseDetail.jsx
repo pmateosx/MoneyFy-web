@@ -29,6 +29,7 @@ const ExpenseDetails = () => {
     const handleDelete = (id) => {
         deleteExpense(id)
         getUser()
+        setEditing(false)
     }
 
     const handleCloseModal = () => {
@@ -40,6 +41,7 @@ const ExpenseDetails = () => {
         setTargetId(id)
         setModalTitle('Edit your Expense')
         setInputCategory('editExpense')
+        setEditing(false)
     }
 
     return (

@@ -34,7 +34,7 @@ const IncomeCategories = () => {
                     </div>
                 </div>
             </div>
-            <IncomeCategoriesChart /> 
+            <IncomeCategoriesChart userInfo={user}/> 
         </div>
     )
 }

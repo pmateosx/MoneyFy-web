@@ -29,6 +29,7 @@ const IncomeDetails = () => {
     const handleDelete = (id) => {
         deleteIncome(id)
         getUser()
+        setEditing(false)
     }
 
     const handleCloseModal = () => {
@@ -40,6 +41,7 @@ const IncomeDetails = () => {
         setTargetId(id)
         setModalTitle('Edit your income')
         setInputCategory('editIncome')
+        setEditing(false)
     }
 
     return (

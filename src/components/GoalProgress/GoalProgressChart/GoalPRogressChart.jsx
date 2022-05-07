@@ -24,26 +24,43 @@ class GoalProgressChart extends React.Component {
         },
       };
     }
+
     componentDidMount(){
       this.setState({
         series: [this.calculatePercentage()]
       })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+      if (this.props.currentMainGoal.id !== prevProps.currentMainGoal.id) {
+        this.setState({
+          series: [this.calculatePercentage()]
+        })
+      }
+    }
+ 
     calculatePercentage() {
       const now = dayjs()
       const mainGoalDate = dayjs(this.props?.currentMainGoal?.createdAt)
+
       const moneyToGoal = this.props?.currentMainGoal?.amount
       const goalCost = this.props?.currentMainGoal?.goalAmount
+
       const differenceDates = now.diff(mainGoalDate, 'M')
       const alreadySaved = moneyToGoal * differenceDates
-      const percent = (alreadySaved / goalCost) * 100
+      let percent = (alreadySaved / goalCost) * 100
 
+      
+      console.log(percent);
+      
+      if(moneyToGoal > goalCost){
+         return percent = 100
+      }
       return percent.toFixed(2)
     }
 
     render() {
-      this.calculatePercentage()
+      console.log("goal", this.props.currentMainGoal);
       return (
         <div id="chart">
             <ReactApexChart 

@@ -17,7 +17,7 @@ const LasMovementsModule = ( {type} ) => {
     
   return (
     <div className="LastMovementsModule">
-        <h2>Last movements</h2>
+        <h2>Last expenses</h2>
         <div className="container-timeline">
             <ul className="ul-timeline">
             {

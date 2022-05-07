@@ -19,7 +19,7 @@ const BalanceModule = () => {
         }
         let totalSum = incomes - expenses
         setTotal(totalSum)
-    },[user?.income, user?.expense])
+    },[user?.income, user?.expense, user])
 
     return (
         <div className='BalanceModule'>
