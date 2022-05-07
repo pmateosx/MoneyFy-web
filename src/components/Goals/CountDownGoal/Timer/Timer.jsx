@@ -10,7 +10,7 @@ const Timer = ({dateToGoal}) => {
 
     return(
         <div>
-           {timer ? dateToGoal : (<p>Hey! goal complete!</p>)}
+           {timer ? dateToGoal : (<p>Hey! Goal completed!</p>)}
         </div>
     )
 }

@@ -14,7 +14,7 @@ const schema = yup.object({
     goalAmount: yup.number().typeError('You must specify a number').required('Goal amount is required'),
   }).required();
 
-const EditGoalInput = ({ sector, target, onClose }) => {
+const EditGoalInput = ({ sector, target, onClose, totalBalance }) => {
     const { getUser } = useAuthContext()
     const [ error, setError ] = useState(false)
     const [step, setStep] = useState(1)
@@ -96,7 +96,7 @@ const EditGoalInput = ({ sector, target, onClose }) => {
                         <>
                     <div className='second-step'>
                         <h4>2º Enter the amount you want to save</h4>
-                        <p>Your total savings balance is XXXX € How much do you want to spend per month to achieve your goal?</p>
+                        <p>Your total savings balance is <b>{totalBalance}</b>€ How much do you want to spend per month to achieve your goal?</p>
                         <div className='col-lg-3 goal-amount-div'>
                             <input className={`${errors.amount?.message ? 'invalid' : ''} goal-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} step='0.01' /> <span>€ x mounth</span>
                         </div>

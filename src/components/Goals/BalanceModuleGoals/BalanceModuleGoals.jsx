@@ -21,7 +21,7 @@ const BalanceModuleGoals = () => {
 
     return(
         <div className='BalanceModuleGoals'>
-                <h4>Total Balance</h4>
+                <h4>Your Balance</h4>
             {total ? 
                 <h3>{total.toFixed(2)}€</h3>
                 :

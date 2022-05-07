@@ -12,20 +12,37 @@ import { useMainGoalContext } from '../../../contexts/MainGoalContext';
 
 const GoalList = () => {
     const {user, getUser } = useAuthContext()
-    const [editing, setEditing] = useState(false)
+    const [ editing, setEditing ] = useState(false)
     const [ allGoals, setAllGoals] = useState([])
     const [ showModal, setShowModal ] = useState(false)
     const [ showCreateModal, setshowCreateModal ] = useState(false)
     const [ modalTitle, setModalTitle ] = useState()
     const [ inputCategory, setInputCategory ] = useState()
     const [ targetId, setTargetId ] = useState()
+    const [ totalBalance, setTotalBalance ] = useState()
 
     const { currentGoal, getCurrentGoal } = useMainGoalContext()
+
 
     useEffect(() => {
         const goals = user?.goal
         setAllGoals(goals)
     }, [user])
+
+
+
+    useEffect(()=> {
+        let expenses = 0
+        for (let i = 0; i < user?.expense.length; i++){
+            expenses += Number(user?.expense[i].amount)
+        }
+        let incomes = 0
+        for (let i = 0; i < user?.income.length; i++){
+            incomes += Number(user?.income[i].amount)
+        }
+        let totalSum = incomes - expenses
+        setTotalBalance(totalSum)
+    },[user?.income, user?.expense])
 
     const handleCloseModal = () => {
         setShowModal(false)
@@ -52,8 +69,8 @@ const GoalList = () => {
     
     return (
         <div className='GoalList'>
-            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditGoalInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
-            {showCreateModal && <Modal onClose={handleCloseModal}> <GoalStepInput onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
+            {showModal && <Modal onClose={handleCloseModal} title={modalTitle}> <EditGoalInput totalBalance={totalBalance} onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
+            {showCreateModal && <Modal onClose={handleCloseModal}> <GoalStepInput totalBalance={totalBalance} onClose={handleCloseModal} sector={inputCategory} target={targetId}/></Modal>}
 
             <div className='head'>
                 <h3>Your Expenses</h3>
