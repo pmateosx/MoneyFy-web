@@ -5,8 +5,11 @@ class IncomeCategoriesChart extends React.Component {
       super(props);
 
       this.state = {
-        series: [80, 55, 41, 17, 15],
+        series: [],
         options: {
+          tootip: {
+
+          },
           chart: {
             toolbar: {
                 show: false
@@ -37,43 +40,68 @@ class IncomeCategoriesChart extends React.Component {
     }
 
     getCategories(){
-      // Recorrer los goals y pusear las categorias
-/*       const uncategorized = this.props?.userInfo?.income?.filter(item => item.category === 'uncategorized' ? item.amount : ''
-     )
-      console.log('uncategory -> ', uncategorized); */
- /*      const personal = this.props?.userInfo?.income?.filter(item => item.category === 'personal')
-      console.log(personal); */
-      
-      const uncategorized = []
-      let sumUncategorized = 0
-      
-      const personalSale = []
-      let sumPersonalSale = 0
-      
-      for (let i = 0; i < this.props?.userInfo?.income.length; i++) {
-        if(this.props?.userInfo?.income[i]?.category === 'uncategorized') {
-          uncategorized.push(this.props?.userInfo?.income[i]?.amount)
-          for (let j = 0; j < uncategorized.length; j++) {
-              sumUncategorized += uncategorized[j]
-            }
-        }
-        if(this.props?.userInfo?.income[i]?.category === 'personal sale') {
-          personalSale.push(this.props?.userInfo?.income[i]?.amount)
-          for (let k = 0; k < personalSale.length; k++) {
-              sumPersonalSale += personalSale[k]
-            }
-        }
 
-        //comprobar si esto va dentro del bucle o fuera
-        //this.state.series = [sumUncategorized, sumPersonalSale,..., resto de sumas de las categorías]
+    let sumUncategorized = 0
+    let sumPersonalSale = 0
+    let sumInvestmentBenefits = 0 
+    let sumSalary = 0
+    let sumPersonalWork = 0
+      
+    for (let i = 0; i < this.props?.userInfo?.income.length; i++) {
+      const uncategorized = []
+      const personalSale = []
+      const investmentBenefits = []
+      const salary = []
+      const personalWork = []
+      
+      if(this.props?.userInfo.income[i].category === 'uncategorized') {
+        uncategorized.push(this.props?.userInfo.income[i].amount)
+        
+        for (let j = 0; j < uncategorized.length; j++) {
+          sumUncategorized += uncategorized[j]
+        }
       }
-    }
+      if(this.props?.userInfo.income[i].category === 'personal sale') {
+        personalSale.push(this.props?.userInfo.income[i].amount)
+        
+        for (let k = 0; k < personalSale.length; k++) {
+          sumPersonalSale += personalSale[k]
+        }
+      } 
+      if(this.props?.userInfo.income[i].category === 'investment benefits') {
+        investmentBenefits.push(this.props?.userInfo.income[i].amount)
+        
+        for (let l = 0; l < investmentBenefits.length; l++) {
+          sumInvestmentBenefits += investmentBenefits[l]
+        }
+      }
+      if(this.props?.userInfo.income[i].category === 'salary') {
+        salary.push(this.props?.userInfo.income[i].amount)
+        
+        for (let m = 0; m < salary.length; m++) {
+          sumSalary += salary[m]
+        }
+      }
+      if(this.props?.userInfo.income[i].category === 'personal work') {
+        personalWork.push(this.props?.userInfo.income[i].amount)
+        
+        for (let n = 0; n < personalWork.length; n++) {
+          sumPersonalWork += personalWork[n]
+        }
+      }
+        } 
+
+      return [ sumUncategorized, sumPersonalSale, sumInvestmentBenefits, sumSalary, sumPersonalWork ]
+      
+  }  
 
     render() {
-      this.getCategories()
       return (
         <div id="chart">
-            <ReactApexChart options={this.state.options} series={this.state.series} type="donut" height='270' width="270"/>
+            <ReactApexChart 
+            options={this.state.options} 
+            series={this.getCategories()} 
+            type="donut" height='270' width="270"/>
         </div>
       );
     }

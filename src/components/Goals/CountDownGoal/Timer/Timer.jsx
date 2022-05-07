@@ -4,7 +4,7 @@ const Timer = ({dateToGoal}) => {
     const [ timer, setTimer ] = useState()
 
     useEffect(() => {
-        const finish = dateToGoal?.split(' ').includes('days')
+        const finish = dateToGoal?.split(' ').includes('ago')
         !finish ? setTimer(dateToGoal) : setTimer(null)
     }, [dateToGoal, timer])
 

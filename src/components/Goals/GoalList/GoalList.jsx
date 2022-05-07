@@ -58,7 +58,7 @@ const GoalList = () => {
     }
 
     const getDateFormat = (date) => {
-        return dayjs(date).format('DD MMM')
+        return dayjs(date).format('DD MMM YY')
     }
 
     const handleDelete = (id) => {

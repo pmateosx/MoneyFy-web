@@ -89,8 +89,6 @@ class ApexChart extends React.Component {
     };
   }
   render() {
-/*     console.log(dayjs(this.props.userInfo?.createdAt).diff(dayjs(), 'M'));
-    console.log('expense amount', this.props?.userInfo?.expense.map(expense => expense.amount++ )); */
     return (
       <div id="chart" className="Chart">
         <h2>Your balance! 😎</h2>

@@ -65,8 +65,12 @@ class GoalProgressChart extends React.Component {
       const differenceDates = now.diff(mainGoalDate, 'M')
       const alreadySaved = moneyToGoal * differenceDates
       let percent = (alreadySaved / goalCost) * 100
+
+
+      const amountInMonth = differenceDates * moneyToGoal
+      const diff = goalCost - amountInMonth
       
-      if(moneyToGoal > goalCost){
+      if (diff <= 0){
          return percent = 100
       }
       return percent.toFixed(2)
