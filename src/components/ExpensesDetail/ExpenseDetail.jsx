@@ -19,6 +19,7 @@ const ExpenseDetails = () => {
     useEffect(() => {
         const expenses = user?.expense
         setAllExpenses(expenses)
+        console.log(user);
     },[user?.expense])
 
 

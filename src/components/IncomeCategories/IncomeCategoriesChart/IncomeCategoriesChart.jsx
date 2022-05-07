@@ -5,7 +5,6 @@ class IncomeCategoriesChart extends React.Component {
       super(props);
 
       this.state = {
-      
         series: [80, 55, 41, 17, 15],
         options: {
           chart: {
