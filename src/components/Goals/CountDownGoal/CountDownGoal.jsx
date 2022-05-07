@@ -21,7 +21,6 @@ const CountDownGoal = () => {
         setTimeToGoal(dayjs().add(monthsToGoal, 'M').format('s'))
         
         setTimeToGoal(dayjs.duration((goalAmount / amount), 'M').humanize(true));
-        console.log(timeToGoal);
         
     },[timeToGoal, currentGoal?.amount, currentGoal?.goalAmount, currentGoal]) 
 

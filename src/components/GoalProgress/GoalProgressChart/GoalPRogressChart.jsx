@@ -20,14 +20,21 @@ class GoalProgressChart extends React.Component {
               }
             },
           },
-          labels: [this.props?.currentMainGoal?.name],
+          labels: [],
         },
       };
     }
 
     componentDidMount(){
       this.setState({
-        series: [this.calculatePercentage()]
+        series: [this.calculatePercentage()],
+      })
+
+      this.setState({
+        options: {
+          ...this.state.options,
+          labels: [this.getLabel()],
+        }
       })
     }
 
@@ -36,9 +43,18 @@ class GoalProgressChart extends React.Component {
         this.setState({
           series: [this.calculatePercentage()]
         })
+        this.setState({
+          options: {
+            ...this.state.options,
+            labels: [this.getLabel()],
+          }
+        })
       }
     }
  
+    getLabel(){
+      return this.props?.currentMainGoal?.name
+    }
     calculatePercentage() {
       const now = dayjs()
       const mainGoalDate = dayjs(this.props?.currentMainGoal?.createdAt)
@@ -55,6 +71,7 @@ class GoalProgressChart extends React.Component {
       }
       return percent.toFixed(2)
     }
+
 
     render() {
       return (
