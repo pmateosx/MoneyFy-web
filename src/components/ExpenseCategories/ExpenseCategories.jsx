@@ -6,35 +6,38 @@ import ExpenseCategoriesChart from './ExpenseCategoriesChart/ExpenseCategoriesCh
 const ExpenseCategories = () => {
     const {user} = useAuthContext()
     const [totalExpenses, setTotalExpenses] = useState()
+    const [allCategories , setAllCategories] = useState()
 
     useEffect(() => {
         let expenseRegistered = user?.expense.length
         setTotalExpenses(expenseRegistered)
     }, [user?.expense])
-    
+
+    useEffect(() => {
+        const categories = user?.expense
+        const categoriesFiltered = []
+        for(let i in categories){
+            categoriesFiltered.push(categories[i].category);
+        }
+        const newArr = categoriesFiltered.filter((item, index)=>  categoriesFiltered.indexOf(item) === index
+        )
+       setAllCategories(newArr)
+    }, [user?.expense, allCategories])
+
     return (
         <div className='ExpenseCategories'>
             <div className='content'>
-                <h2>{totalExpenses > 0 && totalExpenses + ' Registered'}</h2>
-                <div>
-                    <h3>Categories</h3>
-                    <div className='legend'>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                        <span className='circle'></span>
-                        <h4>Expense</h4>
-                    </div>
-                </div>
+                <h2 className='title-chart'>{totalExpenses > 0 && totalExpenses + ' Expenses registered'}</h2>
+{/*                 {allCategories?.map((category, i) => {
+                    return(
+                        <div key={i} className='legend'>
+                            <span className='circle'></span>
+                            <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4> 
+                        </div>
+                    )
+                })} */}
             </div>
-            <ExpenseCategoriesChart /> 
+           { allCategories && <ExpenseCategoriesChart userInfo={user} categoriesUsed={allCategories}/> }
         </div>
     )
 }

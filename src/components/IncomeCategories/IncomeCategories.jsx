@@ -11,7 +11,7 @@ const IncomeCategories = () => {
         let incomeRegistered = user?.income.length
         setTotalIncomes(incomeRegistered)
     }, [user?.income])
-    
+
     return (
         <div className='IncomeCategories'>
             <div className='content'>
@@ -34,7 +34,7 @@ const IncomeCategories = () => {
                     </div>
                 </div>
             </div>
-            <IncomeCategoriesChart userInfo={user}/> 
+            {user && <IncomeCategoriesChart userInfo={user}/> }
         </div>
     )
 }

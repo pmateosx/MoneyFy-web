@@ -40,7 +40,6 @@ class IncomeCategoriesChart extends React.Component {
     }
 
     getCategories(){
-
     let sumUncategorized = 0
     let sumPersonalSale = 0
     let sumInvestmentBenefits = 0 

@@ -4,23 +4,26 @@
     box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05);
     padding: 3rem;
     font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
     margin: 1rem;
     height: 43rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
+    margin-bottom: 5rem;
 
-    .content{
-        h2{
-            font-size: 4rem;
-            margin: 0 0 5rem 1rem;
+    .content {
+
+        .title-chart{
+            /* position: absolute; */
+            /* top: 70px;
+            left: 100px; */
+            font-size: 3rem;
+            margin: 5rem 0 3rem 1rem;
             line-height: 4rem;
             font-weight: 400;
         }
-
     }
 
     h3 {

@@ -12,11 +12,11 @@ class ApexChart extends React.Component {
       series: [
         {
           name: "Expenses",
-          data: this.props?.userInfo?.expense.map(expense => expense.amount++ ),
+          data: this.props?.userInfo?.expense.map(expense => expense.amount),
         },
         {
           name: "Incomes",
-          data: this.props?.userInfo?.income.map(income => income.amount++ ) ,
+          data: this.props?.userInfo?.income.map(income => income.amount) ,
         }
       ],
       options: {
