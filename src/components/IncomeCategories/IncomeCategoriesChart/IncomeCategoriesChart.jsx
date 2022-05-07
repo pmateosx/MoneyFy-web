@@ -68,7 +68,6 @@ class IncomeCategoriesChart extends React.Component {
         //comprobar si esto va dentro del bucle o fuera
         //this.state.series = [sumUncategorized, sumPersonalSale,..., resto de sumas de las categorías]
       }
-        console.log(sumPersonalSale);
     }
 
     render() {

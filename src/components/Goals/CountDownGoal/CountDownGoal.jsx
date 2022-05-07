@@ -12,7 +12,7 @@ dayjs.extend(relativeTime);
 
 const CountDownGoal = () => {
     const { currentGoal }= useMainGoalContext()
-    const [ timeToGoal, setTimeToGoal] = useState(0)
+    const [ timeToGoal, setTimeToGoal] = useState()
     
     useEffect(()=> {
         const amount = currentGoal?.amount
@@ -34,7 +34,7 @@ const CountDownGoal = () => {
                 <h4>Time to compete goal</h4>
                 {timeToGoal && 
                     <div className='counter'>
-                    <h3>{<Timer dateToGoal={timeToGoal} />}</h3>
+                    <h3>{timeToGoal && <Timer dateToGoal={timeToGoal} />}</h3>
                    {/*  <p> ({dayjs.duration((currentGoal?.goalAmount / currentGoal?.amount), 'M').humanize(true)})</p> */}
                 </div>}
             </div>

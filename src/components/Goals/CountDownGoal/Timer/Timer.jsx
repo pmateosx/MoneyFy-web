@@ -5,8 +5,8 @@ const Timer = ({dateToGoal}) => {
 
     useEffect(() => {
         const finish = dateToGoal?.split(' ').includes('days')
-        
         finish ? setTimer(dateToGoal) : setTimer()
+        console.log(finish);
     }, [dateToGoal])
 
     return(

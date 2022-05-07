@@ -49,9 +49,6 @@ class GoalProgressChart extends React.Component {
       const differenceDates = now.diff(mainGoalDate, 'M')
       const alreadySaved = moneyToGoal * differenceDates
       let percent = (alreadySaved / goalCost) * 100
-
-      
-      console.log(percent);
       
       if(moneyToGoal > goalCost){
          return percent = 100
@@ -60,7 +57,6 @@ class GoalProgressChart extends React.Component {
     }
 
     render() {
-      console.log("goal", this.props.currentMainGoal);
       return (
         <div id="chart">
             <ReactApexChart 

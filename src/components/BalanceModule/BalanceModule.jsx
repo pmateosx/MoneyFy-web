@@ -8,7 +8,6 @@ const BalanceModule = () => {
     const { user } = useAuthContext()
 
     useEffect(()=> {
-        console.log(user);
         let expenses = 0
         for (let i = 0; i < user?.expense.length; i++){
             expenses += Number(user?.expense[i].amount)
