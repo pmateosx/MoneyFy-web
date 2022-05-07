@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
-import BalanceChart from './BalanceChart/BalanceChart'
 import './BalanceModule.scss'
 
 const BalanceModule = () => {
@@ -23,7 +22,14 @@ const BalanceModule = () => {
     return (
         <div className='BalanceModule'>
             <div className='chart-div'>
-            {user && <BalanceChart totalBalance={total} userInfo={user}/>}
+                <div className='icon'>
+                    <p>💰</p>
+                </div>
+                <div>
+                    <h3>Total Balance</h3>
+                   {total ?  <h2>{total} €</h2> :  <h2>0 €</h2>}
+                </div>
+                {/* {user && <BalanceChart totalBalance={total} userInfo={user}/>} */}
             </div>
         </div>
     )
