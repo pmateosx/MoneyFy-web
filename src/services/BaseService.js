@@ -17,7 +17,7 @@ const createHttp = (useAccessToken = false) => {
     http.interceptors.response.use(
         (response) => response.data,
         (error) => {
-            if (error?.response?.status && [401,403].includes(error.response.status)) {
+            if (error?.response?.status && [401, 403].includes(error.response.status)) {
                 if (getAccessToken()){
                     logout()
                     if (window.location.pathname !== '/login'){
