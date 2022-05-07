@@ -3,7 +3,7 @@ import { getAccessToken, logout } from '../store/AccessTokenStore';
 
 const createHttp = (useAccessToken = false) => {
     const http = axios.create({
-        baseURL: 'http://localhost:3001/api'
+        baseURL: 'https://moneyfy.onrender.com/api'
     })
 
     http.interceptors.request.use(
