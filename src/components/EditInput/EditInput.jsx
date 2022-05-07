@@ -117,7 +117,7 @@ const EditInput = ({ sector, target, onClose }) => {
                 </div>
             </div>
         {error && <><small className='invalid-2' >Error sending {sector} </small> <br/></>}
-        <button className='input-btn'>Create</button>
+        <button className='input-btn'>Edit</button>
         </form>
     )
 }
