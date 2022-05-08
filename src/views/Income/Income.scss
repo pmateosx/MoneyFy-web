@@ -48,8 +48,20 @@
             width: 100%;
         }
         .balance-income{
-            padding: 3rem;
+            padding: 3rem 1rem 3rem 1rem;
             width: 20rem;
+
+            .cc{
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: row;
+                align-items: baseline;
+            }
+
+            #symbol{
+                font-size: 2rem;
+                margin-left: 0.3rem;
+            }
 
             h3{
                 font-size: 3rem;

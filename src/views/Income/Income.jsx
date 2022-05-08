@@ -2,8 +2,22 @@ import IncomeCategories from '../../components/IncomeCategories/IncomeCategories
 import IncomeDetails from '../../components/IncomeDetails/IncomeDetails'
 import IncomeChart from '../../components/IncomeChart/IncomeChart'
 import './Income.scss'
+import { useAuthContext } from '../../contexts/AuthContext'
+import { useEffect, useState } from 'react'
 
 const Income = () => {
+    const {user} = useAuthContext()
+    const [totalIncome, setTotalIncome] = useState()
+
+    let incomes = 0
+    for (let i = 0; i < user?.income?.length; i++){
+        incomes += Number(user?.income[i].amount)
+    }
+
+    useEffect(()=>{
+       setTotalIncome(incomes)
+    },[user?.income, incomes])
+
     return(
         <div className='container Income'>
             <div className='row'>
@@ -20,13 +34,9 @@ const Income = () => {
 
                     <div className='content-container'>
                         <div className='balance-income'>
-                            <div>
-                                <h3>55555€</h3>
-                                <small>This mounth</small>
-                            </div>
-                            <div>
-                                <h3>55555€</h3>
                                 <small>Total</small>
+                            <div className='cc'>
+                               { totalIncome ? <> <h3>{totalIncome}</h3> <span id='symbol'> €</span> </> : <h3>No info yet</h3>}
                             </div>
                         </div>
                         <span className='divider'></span>
