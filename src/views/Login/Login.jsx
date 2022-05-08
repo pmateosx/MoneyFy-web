@@ -42,14 +42,14 @@ const Login = () => {
     return (
         <div className='container Login'>
             <div className='row'>
-                <div className='col-lg-6'>
-                <img src="https://public-files.gumroad.com/variants/sxn5t8ady8tbj4yeymyh5vi6d9f2/4d4cb575366005157970186bb171da8f6b6b8bb857dcdd1f8e93774cc5f0900d" alt="" />
+                <div className='col-lg-6 img-div' >
+                <img src="https://res.cloudinary.com/dfbloaduq/image/upload/v1651981731/MoneyFy/Login_fbgcos.png" alt="" />
                 </div>
                 <div className='col-lg-4'>
-                    <h2 className='title'>Welcome to MoneyControl</h2>
+                    <h2 className='title'>Welcome to MoneyFy</h2>
                     <div>
                         <p className='inline'>You dont have an Account?</p>
-                        <Link to={'/register'}> Sign up</Link>
+                        <Link to={'/register'}> <u>Sign up</u></Link>
                     </div>
 
                     <div>
@@ -57,7 +57,7 @@ const Login = () => {
                             <div className='formField'>
                                 <label>Email</label>
                                 <input
-                                className={errors.email?.message ? 'invalid' : ''}
+                                className='input-mail'
                                 {...register('email')} 
                                 type="email" 
                                 />
@@ -66,7 +66,7 @@ const Login = () => {
                             <div className='formField'>
                                 <label>Password</label>
                                 <input
-                                 className={errors.password?.message ? 'invalid' : ''}
+                                 className= 'input-mail'
                                 {...register('password')} 
                                 type="password" 
                                 />
