@@ -2,8 +2,11 @@ import ExpenseDetails from '../../components/ExpensesDetail/ExpenseDetail'
 import ExpenseChart from '../../components/ExpenseChart/ExpenseChart'
 import './Expense.scss'
 import ExpenseCategories from '../../components/ExpenseCategories/ExpenseCategories'
+import { useAuthContext } from '../../contexts/AuthContext'
 
 const Expense = () => {
+    const {user} = useAuthContext()
+
     return(
         <div className='container Expense'>
             <div className='row'>
@@ -23,7 +26,7 @@ const Expense = () => {
 
                     <div className='content-container'>
                         <div className='expense-chart'>
-                            <ExpenseChart />
+                            <ExpenseChart userInfo={user}/>
                         </div>
                     </div>
                 </div>
