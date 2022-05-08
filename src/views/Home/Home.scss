@@ -1,0 +1,131 @@
+.Home{
+    height: 100vh;
+    width: 100vw;
+
+    .container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 7rem;
+        text-align: center;
+        line-height: 7rem;
+        margin: 3rem 0;
+    }
+
+    .hero-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10rem;
+        
+/*     .bg-img{
+        z-index: -100;
+        width: 100vw;
+        bottom:200px;
+        background: url('https://res.cloudinary.com/dfbloaduq/image/upload/v1651984544/MoneyFy/fondo_yvnanx.png');
+        background-size: cover !important;
+    } */
+
+        .buttons-home{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            button {
+                margin: 1.5rem 1rem;
+                display: flex;
+                align-items: center;
+                background-color: #4983ff;
+                border-radius: 7px;
+                padding: 0.7rem 2rem;
+                border: none;
+                color: rgb(255, 255, 255);
+                transition: transform .2s;
+            }
+            button:hover{
+                transform: scale(1.05);
+            }
+        }
+    }
+    .feature-container{
+        margin-top: 20rem;
+        padding: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .feature-card{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.1);
+            padding: 2.5rem 4rem;
+            margin: 2.5rem;
+            min-height: 25rem;
+            
+            h3{
+                font-weight: 400;
+                width: 20rem;
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .icon-1 {
+                background-color: #FF4560;
+                padding: 2rem;
+                font-size: 2rem;
+                color: white;
+                border-radius: 7px;
+            }
+            .icon-2 {
+                background-color: rgb(54, 147, 224);
+                padding: 2rem;
+                font-size: 2rem;
+                color: white;
+                border-radius: 7px;
+            }
+            .icon-3 {
+                background-color: #ffbb00;
+                padding: 2rem;
+                font-size: 2rem;
+                color: white;
+                border-radius: 7px;
+            }
+        }
+    }
+
+    .explain-container{
+        margin-top: 15rem;
+        padding-bottom: 20rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h3{
+            font-size: 3rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        p{
+            width: 30rem;
+            font-size: 1.5rem;
+        }
+
+        .explain-img{
+            width: 60rem;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
