@@ -40,9 +40,9 @@ const Navbar = () => {
                     {user ? 
                     (
                         <NavLink to='/profile' className='flexy navUser'>
-                            <div className='frame-img'>
+                           {/*  <div className='frame-img'>
                             <img src={user.avatar} alt="user avatar" />
-                            </div>
+                            </div> */}
                             <p>Hi, {user.name}</p> 
                         </NavLink>
                     )
