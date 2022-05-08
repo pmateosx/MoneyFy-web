@@ -1,16 +1,32 @@
 .Register {
-    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    padding-bottom: 10rem;
+
 
     .inline {
         display: inline !important;
+        font-weight: 400;
     }
     
     .title {
         margin-bottom: 0;
+        font-size: 4rem;
+        font-weight: 400;
+        line-height: 5rem;
+    }
+    .img-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 50px;
     }
 
     img {
         width: 95%;
+        margin-right: 4rem;
     }
     
     .form-container {
@@ -35,6 +51,27 @@
 
             button {
                 margin-top: 1.5rem;
+                display: flex;
+                align-items: center;
+                background-color: #4983ff;
+                border-radius: 7px;
+                padding: 0.7rem 2rem;
+                border: none;
+                color: rgb(255, 255, 255);
+                transition: transform .2s;
+            }
+            button:hover{
+                transform: scale(1.05);
             }
     }
+}
+
+.input-mail {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 209, 209);
+    color: rgb(101, 101, 101);
+    font-size: 1.5rem;
+    padding-left: 10px;
 }
