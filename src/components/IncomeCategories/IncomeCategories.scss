@@ -4,19 +4,22 @@
     box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.05);
     padding: 3rem;
     font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
     margin: 1rem;
     height: 43rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 
     .content{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
         h2{
             font-size: 4rem;
-            margin: 0 0 5rem 1rem;
-            line-height: 4rem;
+            margin: 3rem 0 2rem 1rem;
+            line-height: 3rem;
             font-weight: 400;
         }
 

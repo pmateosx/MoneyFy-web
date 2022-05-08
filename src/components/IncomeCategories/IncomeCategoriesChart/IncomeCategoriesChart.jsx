@@ -1,43 +1,65 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 class IncomeCategoriesChart extends React.Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        series: [],
-        options: {
-          tootip: {
-
-          },
-          chart: {
-            toolbar: {
-                show: false
-                },
-            type: 'donut',
-          },
-          dataLabels: {
-            enabled: false
-          },
-          legend: {
-            show: false
-          },
-          responsive: [{
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200,
+    this.state = {
+      series: [],
+      options: {
+        colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00B1F2', '#F9A3A4', '#C7F464', '#F86624'],
+        plotOptions: {
+          pie: {
+            donut: {
+              size: '65%'
+            }
+          }
+        },
+        chart: {
+          width: '100%',
+          toolbar: {
+              show: false
               },
-              legend: {
-                show: false,
-                position: 'bottom'
+          type: 'donut',
+        },
+        labels: [ 'Uncategorized', 'Persona sale', 'Investment benefits', 'Salary', 'Personal work' ],
+        legend: {
+          show: true,
+          position: 'left',
+          floating: true,
+          offsetX: -30,
+          offsetY: 50,
+          fontSize: 15,            
+      },
+        dataLabels: {
+          enabled: false
+        },
+        tooltip: {
+          enabled: true,
+          y: {
+            formatter: function(val){
+              return val + "€"
+            },
+            title:{
+              formatter: function(seriesName){
+                return seriesName
               }
             }
-          }]
+          },
+ 
         },
-      
-      };
-    }
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: '100%',
+            },
+          }
+        }]
+      },
+    
+    };
+  }
 
     getCategories(){
     let sumUncategorized = 0
@@ -96,11 +118,11 @@ class IncomeCategoriesChart extends React.Component {
 
     render() {
       return (
-        <div id="chart">
+        <div id="chart" style={{position: "absolute", left: "90px", top: "150px"}}>
             <ReactApexChart 
             options={this.state.options} 
             series={this.getCategories()} 
-            type="donut" height='270' width="270"/>
+            type="donut" height='270' width="800"/>
         </div>
       );
     }

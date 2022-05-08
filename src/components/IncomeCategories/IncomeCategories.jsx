@@ -15,24 +15,7 @@ const IncomeCategories = () => {
     return (
         <div className='IncomeCategories'>
             <div className='content'>
-                <h2>{totalIncomes > 0 && totalIncomes + ' Registered'}</h2>
-                <div>
-                    <h3>Categories</h3>
-                    <div className='legend'>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                        <span className='circle'></span>
-                        <h4>Incomes</h4>
-                    </div>
-                </div>
+                <h2>{totalIncomes > 0 && totalIncomes + ' Incomes registered'}</h2>
             </div>
             {user && <IncomeCategoriesChart userInfo={user}/> }
         </div>

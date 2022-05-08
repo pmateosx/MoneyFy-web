@@ -183,7 +183,7 @@ class ExpenseCategoriesChart extends React.Component {
    
     render() {
       return (
-        <div id="chart" className="chart">
+        <div id="chart" style={{position: 'absolute', left: '260px', top: '125px'}}>
             <ReactApexChart 
             options={this.state.options} 
             series={this.getCategories()} 

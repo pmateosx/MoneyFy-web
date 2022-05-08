@@ -3,7 +3,6 @@ import ReactApexChart from "react-apexcharts";
 import './ChartExpenseIncome.scss'
 import dayjs from "dayjs"
 
-
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
