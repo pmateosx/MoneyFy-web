@@ -102,7 +102,7 @@ class ApexChart extends React.Component {
   render() {
     return (
       <div id="chart" className="Chart">
-        <h2>Your balance! 😎</h2>
+        <h2>Your movements! 😎</h2>
         <ReactApexChart
           options= {this.state.options}
           series= {this.state.series}
