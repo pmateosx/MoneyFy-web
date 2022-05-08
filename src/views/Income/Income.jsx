@@ -36,12 +36,12 @@ const Income = () => {
                         <div className='balance-income'>
                                 <small>Total</small>
                             <div className='cc'>
-                               { totalIncome ? <> <h3>{totalIncome}</h3> <span id='symbol'> €</span> </> : <h3>No info yet</h3>}
+                               { totalIncome ? <> <h3>{totalIncome}</h3> <span id='symbol'> €</span> </> : <h4>No info yet</h4>}
                             </div>
                         </div>
                         <span className='divider'></span>
                         <div className='income-chart'>
-                            <IncomeChart />
+                            <IncomeChart userInfo={user}/>
                         </div>
                     </div>
                 </div>

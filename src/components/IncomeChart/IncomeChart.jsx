@@ -1,6 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import './IncomeChart.scss'
+import dayjs from "dayjs";
 
 class IncomeChart extends React.Component {
     constructor(props) {
@@ -17,6 +18,9 @@ class IncomeChart extends React.Component {
             toolbar: {
                 show: false
                 },
+            zoom: {
+              enabled: false,
+            },
             height: 350,
             type: 'area'
           },
@@ -27,8 +31,13 @@ class IncomeChart extends React.Component {
             curve: 'smooth'
           },
           xaxis: {
+            labels: {
+              format: 'dd/MM',
+            },
             type: 'datetime',
-            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            categories: [
+              dayjs(this.props.userInfo?.createdAt).format('YYYY-MM-DDTHH:mm:ssZ[Z]'),
+            ]
           },
           tooltip: {
             x: {
@@ -36,15 +45,48 @@ class IncomeChart extends React.Component {
             },
           },
         },
-      
-      
       };
     }
 
+    getUserIncomes(){
+      const userIncomes = this.props?.userInfo?.income
+      return userIncomes?.map(element => [element.createdAt, element.amount])
+    }
+
+    componentDidMount(){
+      this.setState({
+        series: [{
+          name: "Income",
+          data: this.getUserIncomes()
+        }]
+      })
+    }
+
+    componentDidUpdate(prevProps) {
+      if (this.props?.userInfo?.income !== prevProps.userInfo?.income ) {
+        this.setState({
+          series: [{
+            name: "Income",
+            data: this.getUserIncomes()
+          }]
+        })
+      }
+    }
+
+
+
+
+
+
+
     render() {
+      console.log(this.getUserIncomes())
       return (
         <div id="chart">
-            <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={300} />
+            <ReactApexChart 
+            options={this.state.options} 
+            series={this.state.series} 
+            type="area" height={300} />
         </div>
       )
     }
