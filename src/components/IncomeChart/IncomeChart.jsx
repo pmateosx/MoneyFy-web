@@ -80,7 +80,6 @@ class IncomeChart extends React.Component {
 
 
     render() {
-      console.log(this.getUserIncomes())
       return (
         <div id="chart">
             <ReactApexChart 

@@ -3,6 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import './ChartExpenseIncome.scss'
 import dayjs from "dayjs"
 
+// filter con una resta de la fecha para meterlo  
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
@@ -11,11 +12,11 @@ class ApexChart extends React.Component {
       series: [
         {
           name: "Expenses",
-          data: this.props?.userInfo?.expense.map(expense => expense.amount),
+          data: this.props?.userInfo?.expense.map((expense) => expense.amount).reverse(),
         },
         {
           name: "Incomes",
-          data: this.props?.userInfo?.income.map(income => income.amount) ,
+          data: this.props?.userInfo?.income.map(income => income.amount).reverse() ,
         }
       ],
       options: {
@@ -45,11 +46,14 @@ class ApexChart extends React.Component {
           colors: ["transparent"],
         },
         xaxis: {
-          categories: [
-            dayjs(this.props.userInfo?.createdAt).format('MMM'),
-            "Feb",
-            "Mar",
+          categories: 
+           /*  dayjs(this.props.userInfo?.createdAt).format('D MMM'), */
+            this.props?.userInfo?.income.map(income => dayjs(income.createdAt).format('D MMM')).reverse()
+           /*  dayjs(this.props.userInfo?.createdAt).format('MMM'), */
+           /*  "Mar",
             "Apr",
+            "May", */
+/*             "Apr",
             "May",
             "Jun",
             "Jul",
@@ -57,8 +61,8 @@ class ApexChart extends React.Component {
             "Sep",
             "Oct",
             "Nov",
-            "Dec",
-          ],
+            "Dec", */
+          ,
         },
         yaxis: {
           show: true,
@@ -87,6 +91,14 @@ class ApexChart extends React.Component {
       },
     };
   }
+
+  getUserExpense(){
+    const userExpense = this.props?.userInfo?.expense
+    return userExpense?.map(element => [element.createdAt, element.amount])
+  }
+
+
+
   render() {
     return (
       <div id="chart" className="Chart">

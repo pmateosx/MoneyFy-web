@@ -14,7 +14,10 @@ const Profile = () => {
                     </div>
                     <div className='col-lg-4'>
                         <div className='row'>
-                            <div></div>
+                            <div>
+                                <h3>{user?.name}</h3>
+                                <h4>{user?.email}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -15,15 +15,11 @@ const BalanceModuleGoals = () => {
     const goalCost = currentGoal?.goalAmount
 
     const exceptions = now.diff(mainGoalDate, 'ms') 
-
-    //console.log(differenceDates, mainGoalDate, now);
-    //console.log(exceptions);
     
     
     useEffect(()=>{
         const amountInMonth = differenceDates * moneyToGoal
         const diff = goalCost - amountInMonth
-        console.log(diff);
         if(differenceDates >= 1 ){
             setMoneyLeft(diff)
         } 
