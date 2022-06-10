@@ -15,7 +15,7 @@ MoneyFy is a platform that helps you control your spending and achieve your savi
 | React | Express  |
 | HTML | MongoDB  |
 | SASS | Mongoose  |
-| React | 301  |
+
 <br> <br>
 
 ## 🧑🏼‍🚀 Trial User
