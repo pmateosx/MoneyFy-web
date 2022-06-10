@@ -6,7 +6,7 @@ MoneyFy is a platform that helps you control your spending and achieve your savi
 - 💸 Control your expenses
 - 📈 Set your target
 - 🎯 Calculate how long it will take you to reach it
-
+<br> <br>
 ## ✨  Technology used
 
 | Frontend (Web) | Backend (API REST) |
@@ -16,7 +16,15 @@ MoneyFy is a platform that helps you control your spending and achieve your savi
 | HTML | MongoDB  |
 | SASS | Mongoose  |
 | React | 301  |
+<br> <br>
 
+## 🧑🏼‍🚀 Trial User
+If you don't want to register you can use this user that already has some data for testing purposes
+```sh
+mail: mail@mail.com
+pass: 12345678
+```
+<br> 
 
 ## 📷 ️Screens
 ### Dashboard
