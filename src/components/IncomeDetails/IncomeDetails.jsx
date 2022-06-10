@@ -1,11 +1,11 @@
 import { FiTrendingUp, FiEdit, FiTrash, FiEdit3 } from "react-icons/fi";
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
-import dayjs from "dayjs"
-import './IncomeDetails.scss'
 import { deleteIncome } from "../../services/IncomeService";
+import dayjs from "dayjs"
 import Modal from "../Modal/Modal";
 import EditInput from "../EditInput/EditInput";
+import './IncomeDetails.scss'
 
 const IncomeDetails = () => {
     const {user, getUser } = useAuthContext()
